@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng2-layui": [
+        "dist/ng2-layui"
+      ],
+      "ng2-layui/*": [
+        "dist/ng2-layui/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

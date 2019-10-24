@@ -28,9 +28,12 @@
               "src/assets"
             ],
             "styles": [
+              "projects/ng2-layui/layui/css/layui.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/ng2-layui/layui/layui.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -121,6 +124,41 @@
             "production": {
               "devServerTarget": "ng2-layui-spec:serve:production"
             }
+          }
+        }
+      }
+    },
+    "ng2-layui": {
+      "projectType": "library",
+      "root": "projects/ng2-layui",
+      "sourceRoot": "projects/ng2-layui/src",
+      "prefix": "lay",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng2-layui/tsconfig.lib.json",
+            "project": "projects/ng2-layui/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng2-layui/src/test.ts",
+            "tsConfig": "projects/ng2-layui/tsconfig.spec.json",
+            "karmaConfig": "projects/ng2-layui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng2-layui/tsconfig.lib.json",
+              "projects/ng2-layui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
