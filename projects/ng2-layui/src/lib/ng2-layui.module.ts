@@ -18,7 +18,7 @@ import {
   ShowInlineDirective
 } from "./layout/show-hide.directive";
 
-
+declare var layui;
 
 @NgModule({
   declarations: [Ng2LayuiComponent,
@@ -35,4 +35,19 @@ import {
     IconComponent
   ]
 })
-export class Ng2LayuiModule { }
+export class Ng2LayuiModule {
+
+  static baseDir = './'
+
+  static config(conf:{baseDir?:string}){
+    Ng2LayuiModule.baseDir = !!conf.baseDir?conf.baseDir:'./'
+    return Ng2LayuiModule
+  }
+
+  constructor(){
+    layui.config({
+      dir:Ng2LayuiModule.baseDir
+    })
+  }
+
+}

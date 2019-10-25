@@ -28,12 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "projects/ng2-layui/layui/css/layui.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "projects/ng2-layui/layui/layui.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

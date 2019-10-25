@@ -12,7 +12,7 @@ import {Ng2LayuiModule} from "../../projects/ng2-layui/src/lib/ng2-layui.module"
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Ng2LayuiModule
+    Ng2LayuiModule.config({baseDir:'./assets/layui/'})
   ],
   providers: [],
   bootstrap: [AppComponent]
