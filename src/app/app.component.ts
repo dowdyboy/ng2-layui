@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LayerService} from "../../projects/ng2-layui/src/lib/layer/layer.service";
+import {LayerConfig, LayerService} from "../../projects/ng2-layui/src/lib/layer/layer.service";
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,15 @@ import {LayerService} from "../../projects/ng2-layui/src/lib/layer/layer.service
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'ng2-layui-spec';
 
   constructor(
-    private layMessage:LayerService
+    private layer:LayerService
   ){}
 
-  msgButtonClick(){
-    this.layMessage.message('hello,world')
+  msgButtonClick(e:Event){
+    this.layer.tips('hello',e.currentTarget,{time:500,tips:LayerConfig.TIPS.TOP})
   }
 
 }

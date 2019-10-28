@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { Ng2LayuiComponent } from './ng2-layui.component';
 import {ContainerDirective} from "./layout/container.directive";
 import {RowDirective} from "./layout/row.directive";
 import {
@@ -21,14 +20,14 @@ import {
 declare var layui;
 
 @NgModule({
-  declarations: [Ng2LayuiComponent,
+  declarations: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent
   ],
   imports: [],
-  exports: [Ng2LayuiComponent,
+  exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
@@ -40,7 +39,7 @@ export class Ng2LayuiModule {
   static baseDir = './'
 
   static config(conf:{baseDir?:string}){
-    Ng2LayuiModule.baseDir = !!conf.baseDir?conf.baseDir:'./'
+    Ng2LayuiModule.baseDir = !!conf.baseDir?conf.baseDir:Ng2LayuiModule.baseDir
     return Ng2LayuiModule
   }
 
