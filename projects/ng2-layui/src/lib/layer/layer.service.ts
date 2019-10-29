@@ -2,6 +2,16 @@ import {Injectable} from "@angular/core";
 
 declare var layui;
 
+export class PhotosData {
+
+  constructor(
+    public title?:string,
+    public id?:number,
+    public start?:number,
+    public data?:{alt:string,pid:number,src:string,thumb:string}[]
+  ){}
+}
+
 export class LayerConfig {
 
   static TYPE = {
@@ -100,6 +110,168 @@ export class LayerConfig {
   ){}
 }
 
+export class PromptLayerConfig extends LayerConfig{
+
+  static FORM_TYPE = {
+    TEXT:0,
+    PASSWORD:1,
+    MULTI_TEXT:2
+  }
+
+  constructor(
+    public type?:number,
+    public title?:string,
+    public content?:any,
+    public skin?:string,
+    public area?:string|string[],
+    public offset?:string|string[],
+    public icon?:number,
+    public btn?:string|string[],
+    public btnAlign?:string,
+    public closeBtn?:string|boolean,
+    public shade?:string|string[]|boolean,
+    public shadeClose?:boolean,
+    public time?:number,
+    public id?:string,
+    public anim?:number,
+    public isOutAnim?:boolean,
+    public maxmin?:boolean,
+    public fixed?:boolean,
+    public resize?:boolean,
+    public resizing?:(dom:any)=>any,
+    public scrollbar?:boolean,
+    public maxWidth?:number,
+    public maxHeight?:number,
+    public zIndex?:number,
+    public move?:string|boolean,
+    public moveOut?:boolean,
+    public moveEnd?:(any)=>any,
+    public tips?:number|any[],
+    public tipsMore?:boolean,
+    public success?:(dom:any,index:number)=>any,
+    public yes?:(index:number,dom:any)=>any,
+    public cancel?:(index:number,dom:any)=>boolean,
+    public end?:()=>any,
+    public full?:()=>any,
+    public min?:()=>any,
+    public restore?:()=>any,
+    public path?:string,
+    public extend?:string,
+    public formType?:number,
+    public value?:string,
+    public maxlength?:number
+  ){
+    super(
+      type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
+      anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+    )
+  }
+}
+
+export class TabLayerConfig extends LayerConfig{
+
+  constructor(
+    public type?:number,
+    public title?:string,
+    public content?:any,
+    public skin?:string,
+    public area?:string|string[],
+    public offset?:string|string[],
+    public icon?:number,
+    public btn?:string|string[],
+    public btnAlign?:string,
+    public closeBtn?:string|boolean,
+    public shade?:string|string[]|boolean,
+    public shadeClose?:boolean,
+    public time?:number,
+    public id?:string,
+    public anim?:number,
+    public isOutAnim?:boolean,
+    public maxmin?:boolean,
+    public fixed?:boolean,
+    public resize?:boolean,
+    public resizing?:(dom:any)=>any,
+    public scrollbar?:boolean,
+    public maxWidth?:number,
+    public maxHeight?:number,
+    public zIndex?:number,
+    public move?:string|boolean,
+    public moveOut?:boolean,
+    public moveEnd?:(any)=>any,
+    public tips?:number|any[],
+    public tipsMore?:boolean,
+    public success?:(dom:any,index:number)=>any,
+    public yes?:(index:number,dom:any)=>any,
+    public cancel?:(index:number,dom:any)=>boolean,
+    public end?:()=>any,
+    public full?:()=>any,
+    public min?:()=>any,
+    public restore?:()=>any,
+    public path?:string,
+    public extend?:string,
+    public tab?:LayerConfig[]
+  ){
+    super(
+      type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
+      anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+    )
+  }
+}
+
+export class PhotosLayerConfig extends LayerConfig{
+
+  constructor(
+    public type?:number,
+    public title?:string,
+    public content?:any,
+    public skin?:string,
+    public area?:string|string[],
+    public offset?:string|string[],
+    public icon?:number,
+    public btn?:string|string[],
+    public btnAlign?:string,
+    public closeBtn?:string|boolean,
+    public shade?:string|string[]|boolean,
+    public shadeClose?:boolean,
+    public time?:number,
+    public id?:string,
+    public anim?:number,
+    public isOutAnim?:boolean,
+    public maxmin?:boolean,
+    public fixed?:boolean,
+    public resize?:boolean,
+    public resizing?:(dom:any)=>any,
+    public scrollbar?:boolean,
+    public maxWidth?:number,
+    public maxHeight?:number,
+    public zIndex?:number,
+    public move?:string|boolean,
+    public moveOut?:boolean,
+    public moveEnd?:(any)=>any,
+    public tips?:number|any[],
+    public tipsMore?:boolean,
+    public success?:(dom:any,index:number)=>any,
+    public yes?:(index:number,dom:any)=>any,
+    public cancel?:(index:number,dom:any)=>boolean,
+    public end?:()=>any,
+    public full?:()=>any,
+    public min?:()=>any,
+    public restore?:()=>any,
+    public path?:string,
+    public extend?:string,
+    public photos?:PhotosData|string,
+    public tab?:(pic:any,dom:any)=>any
+  ){
+    super(
+      type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
+      anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+    )
+  }
+}
+
 @Injectable({providedIn:'root'})
 export class LayerService {
 
@@ -134,7 +306,7 @@ export class LayerService {
   }
 
   alert(msg:string,conf?:LayerConfig){
-    return new Promise((resolve,reject)=>{
+    return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         layer.alert(msg,conf?conf:{},idx=>{resolve(idx)})
       })
@@ -142,7 +314,7 @@ export class LayerService {
   }
 
   confirm(msg:string,conf?:LayerConfig){
-    return new Promise((resolve,reject)=>{
+    return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         layer.confirm(msg,conf?conf:{},idx=>{resolve(idx)})
       })
@@ -150,7 +322,7 @@ export class LayerService {
   }
 
   load(icon?:number,conf?:LayerConfig){
-    return new Promise((resolve,reject)=>{
+    return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         resolve(layer.load(icon,conf))
       })
@@ -160,6 +332,26 @@ export class LayerService {
   tips(msg:string,dom:any,conf?:LayerConfig){
     this.layer(layer=>{
       layer.tips(msg,dom,conf?conf:{})
+    })
+  }
+
+  prompt(conf?:PromptLayerConfig){
+    return new Promise<{value:string,index:number,elem:any}>((resolve,reject)=>{
+      this.layer(layer => {
+        layer.prompt(conf?conf:{},(value,index,elem)=>{resolve({value,index,elem})})
+      })
+    })
+  }
+
+  tab(conf?:TabLayerConfig){
+    this.layer(layer => {
+      layer.tab(conf?conf:{})
+    })
+  }
+
+  photos(conf?:PhotosLayerConfig){
+    this.layer(layer => {
+      layer.photos(conf?conf:{})
     })
   }
 

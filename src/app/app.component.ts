@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LayerConfig, LayerService} from "../../projects/ng2-layui/src/lib/layer/layer.service";
+import {LayerConfig, LayerService, PromptLayerConfig} from "../../projects/ng2-layui/src/lib/layer/layer.service";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,18 @@ export class AppComponent {
   ){}
 
   msgButtonClick(e:Event){
-    this.layer.tips('hello',e.currentTarget,{time:500,tips:LayerConfig.TIPS.TOP})
+    this.layer.tab({
+      tab:[
+        {
+          title:'我是TAB1',
+          content:'啦啦啦啦啦啦啦啦啦'
+        },
+        {
+          title:'我是TAB2',
+          content:'哈哈哈哈哈啊哈哈哈哈哈哈哈'
+        }
+      ]
+    })
   }
 
 }
