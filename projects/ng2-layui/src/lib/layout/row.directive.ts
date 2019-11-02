@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from "@angular/core";
+import {Directive, ElementRef, OnInit, Renderer2} from "@angular/core";
 
 
 @Directive({
@@ -6,10 +6,10 @@ import {Directive, ElementRef, OnInit} from "@angular/core";
 })
 export class RowDirective implements OnInit{
 
-  constructor(private ef:ElementRef){
+  constructor(private ef:ElementRef,private render:Renderer2){
   }
 
   ngOnInit(): void {
-    this.ef.nativeElement.className += 'layui-row '
+    this.render.addClass(this.ef.nativeElement,'layui-row')
   }
 }

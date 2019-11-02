@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LayerConfig, LayerService, PromptLayerConfig} from "../../projects/ng2-layui/src/lib/layer/layer.service";
+import {LayerService} from "../../projects/ng2-layui/src/lib/layer/layer.service";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,11 @@ import {LayerConfig, LayerService, PromptLayerConfig} from "../../projects/ng2-l
 export class AppComponent {
 
   title = 'ng2-layui-spec';
+
+  showTab:boolean = false
+  tabs:string[] = ['tab1','tab2','tab3']
+  tabsType:string = ''
+  tabsAllowClose:boolean = false
 
   constructor(
     private layer:LayerService
@@ -27,6 +32,15 @@ export class AppComponent {
         }
       ]
     })
+  }
+
+  addTabButtonClick(){
+    this.tabs = this.tabs.concat(`${Math.random()}`)
+    this.tabsType = 'card'
+    this.tabsAllowClose = !this.tabsAllowClose
+  }
+  toggleTabButtonClick(){
+    this.showTab = !this.showTab
   }
 
 }

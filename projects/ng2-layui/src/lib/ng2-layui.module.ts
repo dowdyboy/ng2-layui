@@ -16,6 +16,9 @@ import {
   ShowInlineBlockDirective,
   ShowInlineDirective
 } from "./layout/show-hide.directive";
+import {TabComponent} from "./tab/tab.component";
+import {TabItemComponent} from "./tab/tab-item.component";
+import {CommonModule} from "@angular/common";
 
 declare var layui;
 
@@ -24,14 +27,16 @@ declare var layui;
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
-    IconComponent
+    IconComponent,TabComponent,TabItemComponent
   ],
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
-    IconComponent
+    IconComponent,TabComponent,TabItemComponent
   ]
 })
 export class Ng2LayuiModule {

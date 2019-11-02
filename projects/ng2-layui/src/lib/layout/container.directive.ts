@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from "@angular/core";
+import {Directive, ElementRef, OnInit, Renderer2} from "@angular/core";
 
 
 @Directive({
@@ -6,11 +6,11 @@ import {Directive, ElementRef, OnInit} from "@angular/core";
 })
 export class ContainerDirective implements OnInit{
 
-  constructor(private el:ElementRef){
+  constructor(private el:ElementRef,private render:Renderer2){
   }
 
   ngOnInit(): void {
-    this.el.nativeElement.className += 'layui-container '
+    this.render.addClass(this.el.nativeElement,'layui-container')
   }
 
 }

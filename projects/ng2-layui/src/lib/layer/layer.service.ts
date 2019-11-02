@@ -367,4 +367,76 @@ export class LayerService {
     })
   }
 
+  open(conf:LayerConfig){
+    return new Promise<number>((resolve,reject)=>{
+      this.layer(layer => {
+        resolve(layer.open(conf))
+      })
+    })
+  }
+
+  style(index:number,cssStyle:any){
+    this.layer(layer => {
+      layer.style(index,cssStyle)
+    })
+  }
+
+  title(index:number,title:string){
+    this.layer(layer => {
+      layer.title(title,index)
+    })
+  }
+
+  getChildFrame(index:number,selector:string){
+    return new Promise<any>((resolve,reject)=>{
+      this.layer(layer => {
+        resolve(layer.getChildFrame(selector,index))
+      })
+    })
+  }
+
+  getFrameIndex(windowName:string){
+    return new Promise<number>((resolve,reject)=>{
+      this.layer(layer => {
+        resolve(layer.getFrameIndex(windowName))
+      })
+    })
+  }
+
+  iframeAuto(index:number){
+    this.layer(layer => {
+      layer.iframeAuto(index)
+    })
+  }
+
+  iframeSrc(index:number,iframeSrc:string){
+    this.layer(layer => {
+      layer.iframeSrc(index,iframeSrc)
+    })
+  }
+
+  setTop(dom:any){
+    this.layer(layer => {
+      layer.setTop(dom)
+    })
+  }
+
+  full(){
+    this.layer(layer => {
+      layer.full()
+    })
+  }
+
+  min(){
+    this.layer(layer => {
+      layer.min()
+    })
+  }
+
+  restore(){
+    this.layer(layer => {
+      layer.restore()
+    })
+  }
+
 }

@@ -37,3 +37,13 @@
 <div>
   <button (click)="msgButtonClick($event)">msg</button>
 </div>
+
+<div>
+  <layui-tab *ngIf="showTab" [type]="tabsType" [allowClose]="tabsAllowClose" >
+    <layui-tab-item *ngFor="let item of tabs" [title]="item">
+      <h1>{{item}}</h1>
+    </layui-tab-item>
+  </layui-tab>
+  <button (click)="toggleTabButtonClick()">toggle</button>
+  <button (click)="addTabButtonClick()">add tab</button>
+</div>
