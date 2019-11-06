@@ -13,7 +13,6 @@ export class AppComponent {
   showTab:boolean = false
   tabs:string[] = ['tab1','tab2','tab3']
   tabsType:string = ''
-  tabsAllowClose:boolean = false
 
   constructor(
     private layer:LayerService
@@ -35,12 +34,16 @@ export class AppComponent {
   }
 
   addTabButtonClick(){
-    this.tabs = this.tabs.concat(`${Math.random()}`)
-    this.tabsType = 'card'
-    this.tabsAllowClose = !this.tabsAllowClose
+    this.tabs = this.tabs.concat(`${Math.floor(Math.random()*100)}`)
   }
   toggleTabButtonClick(){
     this.showTab = !this.showTab
+  }
+  shuffleTabButtonClick(){
+    this.tabs = this.tabs.sort((a,b)=>{return Math.random()>Math.random()?1:-1})
+  }
+  tabSelectedHandler(title:string){
+    console.log(title)
   }
 
 }
