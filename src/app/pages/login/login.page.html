@@ -3,29 +3,30 @@
   <div layui-row>
     <div layui-col-sm="4">&nbsp;</div>
     <div layui-col-sm="4">
-      <layui-card style="margin-top: 120px">
-        <layui-card-body>
-          <img style="display: block;width: 55%;margin: 0 auto;" src="/assets/images/logo.png" />
-          <br/>
-          <div>
-            <input name="username" [(ngModel)]="username" placeholder="用户名" autocomplete="off" />
-          </div>
-          <br/>
-          <div>
-            <input type="password" name="password" [(ngModel)]="password" placeholder="密码" autocomplete="off" />
-          </div>
-          <br/>
-          <div>
-            <div layui-btn-container>
-              <button layui-btn theme="primary" size="sm" (click)="loginButtonClick()" >登录</button>
-              <button layui-btn theme="primary" size="sm" (click)="loginButtonClick()" >注册</button>
-            </div>
-          </div>
-          <br/>
-          <h1 style="text-align: center;color: #999;font-size: 18px;">文鼎创扫码盒子业务管理系统</h1>
-          <p style="text-align: center;color: #ccc;font-size: 12px;">Copyright ©2019-2020 excelsecu {{version}}</p>
-        </layui-card-body>
-      </layui-card>
+      <div style="width: 85%;margin: 0 auto;">
+        <layui-card style="margin-top: 120px">
+          <layui-card-body>
+            <form layui-form>
+              <img style="display: block;width: 55%;margin: 0 auto;" src="/assets/images/logo.png" />
+              <br/>
+              <div>
+                <input layui-input name="username" [(ngModel)]="username" placeholder="用户名" autocomplete="off" />
+              </div>
+              <br/>
+              <div>
+                <input layui-input type="password" name="password" [(ngModel)]="password" placeholder="密码" autocomplete="off" />
+              </div>
+              <br/>
+              <div>
+                <button layui-btn-fluid theme="normal" (click)="loginButtonClick()" type="button" >登录</button>
+              </div>
+              <br/>
+              <h1 style="text-align: center;color: #999;font-size: 18px;">{{name}}</h1>
+              <p style="text-align: center;color: #ccc;font-size: 12px;">Copyright ©2019-2020 excelsecu {{version}}</p>
+            </form>
+          </layui-card-body>
+        </layui-card>
+      </div>
     </div>
     <div layui-col-sm="4">&nbsp;</div>
   </div>

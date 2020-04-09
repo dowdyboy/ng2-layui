@@ -2,7 +2,7 @@ import {Component, ElementRef, Renderer2} from "@angular/core";
 
 
 @Component({
-  selector:'layui-card-header',
+  selector:'layui-card-header,div[layui-card-header]',
   template:`
     <ng-content></ng-content>
   `,

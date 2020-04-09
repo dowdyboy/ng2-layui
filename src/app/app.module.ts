@@ -9,20 +9,27 @@ import {LoginPage} from "./pages/login/login.page";
 import {MainPage} from "./pages/main/main.page";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {TestPage} from "./pages/test/test.page";
+import {AuthenticationService} from "./services/authentication.service";
+import {ClientService} from "./services/client.service";
+import {StatisticService} from "./services/statistic.service";
+import {UserService} from "./services/user.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     Ng2LayuiModule.config({baseDir:'./assets/layui/'})
   ],
   declarations: [
-    AppComponent,LoginPage,MainPage
+    AppComponent,LoginPage,MainPage,TestPage
   ],
   providers: [
-    ConfigurationService
+    ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService
   ],
   bootstrap: [AppComponent]
 })

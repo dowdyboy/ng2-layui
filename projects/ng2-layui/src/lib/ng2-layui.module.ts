@@ -29,6 +29,13 @@ import {ButtonFluidDirective} from "./button/button-fluid.directive";
 import {ButtonRadiusDirective} from "./button/button-radius.directive";
 import {ButtonGroupDirective} from "./button/button-group.directive";
 import {ButtonContainerDirective} from "./button/button-container.directive";
+import {FormComponent} from "./form/form.component";
+import {FormItemComponent} from "./form/form-item.component";
+import {FormLabelComponent} from "./form/form-label.component";
+import {FormInputBlockComponent} from "./form/form-input-block.component";
+import {InputComponent} from "./form/input.component";
+import {FormInputInlineComponent} from "./form/form-input-inline.component";
+import {FormTextComponent} from "./form/form-text.component";
 
 declare var layui;
 
@@ -42,6 +49,8 @@ declare var layui;
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
+    FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
+    FormTextComponent,
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
@@ -49,6 +58,8 @@ declare var layui;
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
+    FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
+    FormTextComponent,
   ]
 })
 export class Ng2LayuiModule {

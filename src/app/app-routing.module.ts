@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginPage} from "./pages/login/login.page";
 import {MainPage} from "./pages/main/main.page";
+import {TestPage} from "./pages/test/test.page";
 
 
 const routes: Routes = [
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path:'main',
     component:MainPage
+  },
+  {
+    path:'test',
+    component:TestPage
   },
   {
     path:'**',

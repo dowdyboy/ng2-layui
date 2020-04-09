@@ -13,7 +13,7 @@ import {TabItemComponent} from "./tab-item.component";
 declare var layui;
 
 @Component({
-  selector:'layui-tab',
+  selector:'layui-tab,div[layui-tab]',
   template:`
     <ul class="layui-tab-title">
       <ng-container *ngIf="!!tabItemComponents">

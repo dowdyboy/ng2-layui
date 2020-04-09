@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from 
 
 
 @Component({
-  selector:'layui-icon',
+  selector:'layui-icon,i[layui-icon]',
   template:``,
   styles:[
     `

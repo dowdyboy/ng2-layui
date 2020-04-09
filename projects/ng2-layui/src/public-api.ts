@@ -27,3 +27,7 @@ export * from './lib/button/button-fluid.directive'
 export * from './lib/button/button-radius.directive'
 export * from './lib/button/button-group.directive'
 export * from './lib/button/button-container.directive'
+
+export * from './lib/form/form.component'
+export * from './lib/form/form-item.component'
+export * from './lib/form/form-label.component'

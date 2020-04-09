@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, Renderer2} from "@angular/core";
 
 
 @Component({
-  selector:'layui-tab-item',
+  selector:'layui-tab-item,div[layui-tab-item]',
   template:`
     <ng-content></ng-content>
   `
