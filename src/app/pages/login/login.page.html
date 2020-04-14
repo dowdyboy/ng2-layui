@@ -6,19 +6,47 @@
       <div style="width: 85%;margin: 0 auto;">
         <layui-card style="margin-top: 120px">
           <layui-card-body>
-            <form layui-form>
+            <form layui-form >
               <img style="display: block;width: 55%;margin: 0 auto;" src="/assets/images/logo.png" />
               <br/>
               <div>
-                <input layui-input name="username" [(ngModel)]="username" placeholder="用户名" autocomplete="off" />
+                <input layui-input name="username" [verify]="'required'" [(ngModel)]="username" placeholder="用户名" autocomplete="off" />
               </div>
               <br/>
               <div>
                 <input layui-input type="password" name="password" [(ngModel)]="password" placeholder="密码" autocomplete="off" />
               </div>
               <br/>
+              <layui-form-item>
+                <layui-form-label>性别</layui-form-label>
+                <layui-form-input-block>
+                  <input layui-input [(ngModel)]="sex" type="radio" name="sex" value="male" title="男" />
+                  <input layui-input [(ngModel)]="sex" type="radio" name="sex" value="female" title="女" />
+                </layui-form-input-block>
+              </layui-form-item>
+              <br/>
+              <layui-form-item>
+                <layui-form-label>爱好</layui-form-label>
+                <layui-form-input-block>
+                  <input layui-input [skin]="'switch'" [switchOnText]="'开'" [switchOffText]="'关'" [(ngModel)]="habits[0].checked" [value]="habits[0].value" type="checkbox" name="habits[]" title="足球" />
+                  <input layui-input [skin]="'switch'" [switchOnText]="'开'" [switchOffText]="'关'" [(ngModel)]="habits[1].checked" [value]="habits[1].value" type="checkbox" name="habits[]" title="编程" />
+                  <input layui-input [skin]="'switch'" [switchOnText]="'开'" [switchOffText]="'关'" [(ngModel)]="habits[2].checked" [value]="habits[2].value" type="checkbox" name="habits[]" title="音乐" />
+                </layui-form-input-block>
+              </layui-form-item>
+              <br/>
+              <layui-form-item>
+                <layui-form-label>最爱书籍</layui-form-label>
+                <layui-form-input-block>
+                  <select layui-input [(ngModel)]="book" name="book">
+                    <option value="0">人类简史</option>
+                    <option value="1">论福利</option>
+                    <option value="2">共产党宣言</option>
+                  </select>
+                </layui-form-input-block>
+              </layui-form-item>
+              <br/>
               <div>
-                <button layui-btn-fluid theme="normal" (click)="loginButtonClick()" type="button" >登录</button>
+                <button layui-form-submit layui-btn-fluid (submit)="loginButtonClick($event)" theme="normal" type="button" >登录</button>
               </div>
               <br/>
               <h1 style="text-align: center;color: #999;font-size: 18px;">{{name}}</h1>

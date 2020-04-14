@@ -36,6 +36,9 @@ import {FormInputBlockComponent} from "./form/form-input-block.component";
 import {InputComponent} from "./form/input.component";
 import {FormInputInlineComponent} from "./form/form-input-inline.component";
 import {FormTextComponent} from "./form/form-text.component";
+import {InputIgnoreDirective} from "./form/input-ignore.directive";
+import {InlineDirective} from "./layout/inline.directive";
+import {FormSubmitDirective} from "./form/form-submit.directive";
 
 declare var layui;
 
@@ -45,21 +48,21 @@ declare var layui;
   ],
   declarations: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
-    ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
+    ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,InlineDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
-    FormTextComponent,
+    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
-    ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,
+    ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,InlineDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
-    FormTextComponent,
+    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
   ]
 })
 export class Ng2LayuiModule {

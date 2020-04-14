@@ -16,10 +16,15 @@ export class LoginPage implements OnInit,OnDestroy {
   username:string = ''
   password:string = ''
   sex:string = 'male'
+  habits:{value:string,checked:boolean}[] = [
+    {value:'football',checked:false},
+    {value:'program',checked:false},
+    {value:'music',checked:false},
+  ]
+  book:string = '0'
 
   constructor(
-    private $conf:ConfigurationService,
-    private $client:ClientService
+    private $conf:ConfigurationService
   ){}
 
   ngOnInit(): void {
@@ -29,14 +34,18 @@ export class LoginPage implements OnInit,OnDestroy {
 
     console.log(TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date()))
     console.log(TimeUtil.parse('YYYY/MM/DD-HH:mm:ss','2020/03/17-10:30:31'))
+
   }
 
   ngOnDestroy(): void {
     $('body').css('background-color','white')
   }
 
-  loginButtonClick(){
-    alert(`${this.username} - ${this.password} - ${this.sex}`)
+  loginButtonClick(e){
+    console.log(e)
+    console.log(this.sex)
+    console.log(this.habits)
+    console.log(this.book)
   }
 
 }

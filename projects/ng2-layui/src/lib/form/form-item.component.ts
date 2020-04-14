@@ -17,8 +17,8 @@ import {Component, ElementRef, Renderer2} from "@angular/core";
 export class FormItemComponent {
 
   constructor(
-    private ef:ElementRef,
-    private render:Renderer2
+    public ef:ElementRef,
+    public render:Renderer2
   ){
     this.render.addClass(this.ef.nativeElement,'layui-form-item')
   }
