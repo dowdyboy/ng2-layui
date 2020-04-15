@@ -1,22 +1,18 @@
 
 <layui-layout>
   <layui-header>
-    <layui-logo>layui 后台布局</layui-logo>
-    <layui-nav layui-layout-left [items]="navItems" (select)="navItemSelected($event)"></layui-nav>
+    <layui-logo>营销活动管理系统</layui-logo>
+    <layui-nav layui-layout-right [items]="topNavItems" [autoSelect]="false" (select)="navItemSelected($event)"></layui-nav>
   </layui-header>
   <layui-side layui-color-bg="black">
-    side
+    <layui-nav [type]="'vertical'" [items]="sideNavItems" (select)="navItemSelected($event)"></layui-nav>
   </layui-side>
   <layui-body>
-    <layui-breadcrumb [items]="navItems" separator="|" (select)="navItemSelected($event)"></layui-breadcrumb>
-    <p>0</p>
-    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
-    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
-    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
-    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
-    <p>2</p>
+    <div style="padding: 20px">
+      <router-outlet></router-outlet>
+    </div>
   </layui-body>
   <layui-footer>
-    footer
+    Copyright 2020 EXCELSECU. All Rights Reserved.
   </layui-footer>
 </layui-layout>

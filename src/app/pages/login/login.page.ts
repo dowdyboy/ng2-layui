@@ -35,7 +35,6 @@ export class LoginPage implements OnInit,OnDestroy {
   loginButtonClick(e){
     this.$auth.login(this.username,this.password).subscribe(resp=>{
       if(resp.code == 0){
-        alert('')
         this.router.navigate(['main'])
       }
     })

@@ -31,6 +31,6 @@ export class LayuiColor {
 
   getColorValue(label){
     let colors = LayuiColor.COLOR_LIST.filter(c=>c.label == label)
-    return colors.length>0?colors[0].value:label
+    return colors.length>0?colors[0].value:'black'
   }
 }

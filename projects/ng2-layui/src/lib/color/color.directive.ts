@@ -15,6 +15,7 @@ export class ColorDirective extends LayuiColor implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.render.setStyle(this.ef.nativeElement,'color',this.getColorValue(this.color))
+
   }
 
 }

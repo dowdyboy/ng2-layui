@@ -3,7 +3,7 @@ import {
   AfterViewInit,
   Component,
   ContentChildren, ElementRef, EventEmitter,
-  Input,
+  Input, NgZone,
   OnChanges, OnDestroy, OnInit, Output,
   QueryList, Renderer2,
   SimpleChanges
@@ -46,7 +46,8 @@ export class TabComponent implements OnInit,OnDestroy,OnChanges,AfterContentInit
 
   constructor(
     private render:Renderer2,
-    private ef:ElementRef
+    private ef:ElementRef,
+    private zone:NgZone
   ){
     this.render.addClass(this.ef.nativeElement,'layui-tab')
   }
@@ -67,7 +68,9 @@ export class TabComponent implements OnInit,OnDestroy,OnChanges,AfterContentInit
     layui.use('element', ()=>{
       layui.element.on(`tab(${this.layFilter})`,e=>{
         let title = this.tabItemComponents.find((item,idx,arr)=>{return idx == e.index}).title
-        this.tabSelectedEmitter.emit(title)
+        this.zone.run(()=>{
+          this.tabSelectedEmitter.emit(title)
+        })
       })
     })
   }
@@ -91,7 +94,9 @@ export class TabComponent implements OnInit,OnDestroy,OnChanges,AfterContentInit
 
   ngAfterContentInit(): void {
     this.tabItemComponents.first.show()
-    this.tabSelectedEmitter.emit(this.tabItemComponents.first.title)
+    this.zone.run(()=>{
+      this.tabSelectedEmitter.emit(this.tabItemComponents.first.title)
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

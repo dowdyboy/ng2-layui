@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, Renderer2} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, Output, Renderer2} from "@angular/core";
 
 declare var layui;
 
@@ -24,7 +24,8 @@ export class InputComponent implements OnChanges {
 
   constructor(
     private ef:ElementRef,
-    private render:Renderer2
+    private render:Renderer2,
+    private zone:NgZone
   ){
     this.render.setAttribute(this.ef.nativeElement,'lay-filter',this.layFilter)
     if(this.ef.nativeElement.nodeName.toLowerCase() == 'input'){
@@ -33,10 +34,14 @@ export class InputComponent implements OnChanges {
         layui.use('form',()=>{
           layui.form.render('checkbox',this.layFilter)
           layui.form.on(`checkbox(${this.layFilter})`,d=>{
-            this.ngModelChange.emit(d.elem.checked)
+            this.zone.run(()=>{
+              this.ngModelChange.emit(d.elem.checked)
+            })
           })
           layui.form.on(`switch(${this.layFilter})`,d=>{
-            this.ngModelChange.emit(d.elem.checked)
+            this.zone.run(()=>{
+              this.ngModelChange.emit(d.elem.checked)
+            })
           })
         })
       }
@@ -44,7 +49,9 @@ export class InputComponent implements OnChanges {
         layui.use('form',()=>{
           layui.form.render('radio',this.layFilter)
           layui.form.on(`radio(${this.layFilter})`,d=>{
-            this.ngModelChange.emit(d.value)
+            this.zone.run(()=>{
+              this.ngModelChange.emit(d.value)
+            })
           })
         })
       }
@@ -53,13 +60,29 @@ export class InputComponent implements OnChanges {
       layui.use('form',()=>{
         layui.form.render('select',this.layFilter)
         layui.form.on(`select(${this.layFilter})`,d=>{
-          this.ngModelChange.emit(d.value)
+          this.zone.run(()=>{
+            this.ngModelChange.emit(d.value)
+          })
         })
       })
     }
     if(this.ef.nativeElement.nodeName.toLowerCase() == 'textarea'){
       this.render.addClass(this.ef.nativeElement,'layui-textarea')
     }
+  }
+
+  private layuiRender(){
+    setTimeout(()=>{
+      layui.use('form',()=>{
+        if(this.ef.nativeElement.nodeName.toLowerCase() == 'input'){
+          if(this.ef.nativeElement.type == 'checkbox') layui.form.render('checkbox',this.layFilter)
+          if(this.ef.nativeElement.type == 'radio') layui.form.render('radio',this.layFilter)
+        }
+        if(this.ef.nativeElement.nodeName.toLowerCase() == 'select'){
+          layui.form.render('select',this.layFilter)
+        }
+      })
+    },100)
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
@@ -105,6 +128,7 @@ export class InputComponent implements OnChanges {
         this.render.removeAttribute(this.ef.nativeElement,'lay-reqText')
       }
     }
+    this.layuiRender()
   }
 
 }

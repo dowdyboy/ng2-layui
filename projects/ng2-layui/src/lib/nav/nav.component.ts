@@ -1,6 +1,25 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, Renderer2, SimpleChanges} from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  Renderer2,
+  SimpleChanges
+} from "@angular/core";
 
 declare var layui;
+
+export interface NavItem {
+  id:string
+  text:string
+  badge?:number
+  dot?:boolean
+  img?:string
+  unselect?:boolean
+  children?:{id:string,text:string,badge?:number,dot?:boolean,img?:string,unselect?:boolean}[]
+}
 
 @Component({
   selector:'layui-nav,div[layui-nav]',
@@ -34,11 +53,12 @@ declare var layui;
 })
 export class NavComponent implements OnChanges{
 
-  @Input('items') items:{id:string,text:string,badge?:number,dot?:boolean,img?:string,unselect?:boolean,children?:{id:string,text:string,badge?:number,dot?:boolean,img?:string,unselect?:boolean}[]}[] = []
+  @Input('items') items:NavItem[] = []
   @Input('selectedItemId') selectedItemId:string = null
   @Input('type') type:string = 'horizontal'
   @Input('shrink') shrink:boolean = false
-  @Output('select') select = new EventEmitter<{id:string,text:string}>()
+  @Input('autoSelect') autoSelect:boolean = true
+  @Output('select') select = new EventEmitter<NavItem>()
 
   private layFilter:string = `LF-NAV-${new Date().getTime()}${Math.floor(Math.random()*99999)}`
 
@@ -46,19 +66,33 @@ export class NavComponent implements OnChanges{
     private ef:ElementRef,
     private render:Renderer2
   ){
+    this.render.setAttribute(this.ef.nativeElement,'id',this.layFilter)
+    this.render.setAttribute(this.ef.nativeElement,'lay-filter',this.layFilter)
     this.render.addClass(this.ef.nativeElement,'layui-nav')
-    layui.use('element',()=>{
-      layui.element.render('nav',this.layFilter)
-    })
+    this.layuiRender()
+  }
+
+  private layuiRender(){
+    //只有把layui-nav-bar移除后渲染才有效
+    setTimeout(()=>{
+      layui.use('element',()=>{
+        if(document.getElementById(this.layFilter).getElementsByClassName('layui-nav-bar').length>0){
+          for(let i=0;i<document.getElementById(this.layFilter).getElementsByClassName('layui-nav-bar').length;i++){
+            document.getElementById(this.layFilter).getElementsByClassName('layui-nav-bar').item(i).remove()
+          }
+        }
+        layui.element.render('nav',this.layFilter)
+      })
+    },100)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['items']){
       if(changes['items'].currentValue && changes['items'].currentValue.length > 0){
         if(changes['items'].currentValue[0].children && changes['items'].currentValue[0].children.length > 0){
-          if(this.selectedItemId == null) this.itemClick(changes['items'].currentValue[0].children[0])
+          if(this.selectedItemId == null && this.autoSelect) this.itemClick(changes['items'].currentValue[0].children[0])
         }else{
-          if(this.selectedItemId == null) this.itemClick(changes['items'].currentValue[0])
+          if(this.selectedItemId == null && this.autoSelect) this.itemClick(changes['items'].currentValue[0])
         }
       }
     }
@@ -83,9 +117,10 @@ export class NavComponent implements OnChanges{
         this.render.removeAttribute(this.ef.nativeElement,'lay-shrink')
       }
     }
+    this.layuiRender()
   }
 
-  itemClick(item:{id:string,text:string,badge?:number,dot?:boolean,unselect?:boolean,children?:{id:string,text:string,badge?:number,dot?:boolean,unselect?:boolean}[]}){
+  itemClick(item:NavItem){
     if(!item.children){
       this.selectedItemId = item.id
       this.select.emit(item)

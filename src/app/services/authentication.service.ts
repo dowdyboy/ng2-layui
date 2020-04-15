@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   static USER_TOKEN_KEY = 'USER_TOKEN_KEY'
 
-  private token:{token:string,deadline:number} = null
+  private token:{token:string,role:number,deadline:number} = null
 
   constructor(
     private http:HttpClient,
@@ -22,8 +22,8 @@ export class AuthenticationService {
     }
   }
 
-  private setToken(token:string){
-    this.token = {token:token,deadline:new Date().getTime()+86300000}
+  private setToken(token:string,role:number){
+    this.token = {token:token,role:role,deadline:new Date().getTime()+7200*1000}
     StorageUtil.setLocalStorage(AuthenticationService.USER_TOKEN_KEY,JSON.stringify(this.token))
   }
 
@@ -43,16 +43,25 @@ export class AuthenticationService {
     }else return null
   }
 
+  getRole(){
+    if(!!this.token){
+      if(new Date().getTime() > this.token.deadline){
+        this.removeToken()
+        return null
+      } else return this.token.role
+    }else return null
+  }
+
   login(username:string,password:string){
-    return this.http.post<HttpResponseData<{token:string}>>(this.$conf.AUTH_URLS.LOGIN.get(),JSON.stringify({
+    return this.http.post<HttpResponseData<{token:string,role:number}>>(this.$conf.AUTH_URLS.LOGIN.get(),JSON.stringify({
       username:username,
       password:password
     })).pipe(
       map(resp=>{
         if(resp.code == 0){
-          this.setToken(resp.data.token)
+          this.setToken(resp.data.token,resp.data.role)
         }
-        resp.data = {token:''}
+        resp.data.token = ''
         return resp
       })
     )
