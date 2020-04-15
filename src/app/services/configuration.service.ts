@@ -8,9 +8,7 @@ export class ConfigurationService {
   NAME:string = '营销活动管理系统'
   VERSION:string = '0.0.1'
 
-  IS_MOCK = false
-
-  API_BASE_URL = 'http://127.0.0.1'
+  API_BASE_URL = 'http://easymock.dowdyboy.com/mock/5e9564a46226e900164d0ad8/yx'
 
   AUTH_URLS = {
     LOGIN:new Url(`${this.API_BASE_URL}/api/login`),

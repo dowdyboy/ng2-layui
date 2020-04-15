@@ -39,6 +39,16 @@ import {FormTextComponent} from "./form/form-text.component";
 import {InputIgnoreDirective} from "./form/input-ignore.directive";
 import {InlineDirective} from "./layout/inline.directive";
 import {FormSubmitDirective} from "./form/form-submit.directive";
+import {LayoutComponent} from "./layout/layout.component";
+import {HeaderComponent} from "./layout/header.component";
+import {SideComponent} from "./layout/side.component";
+import {BodyComponent} from "./layout/body.component";
+import {FooterComponent} from "./layout/footer.component";
+import {LogoComponent} from "./layout/logo.component";
+import {NavComponent} from "./nav/nav.component";
+import {LayoutLeftDirective} from "./layout/layout-left.directive";
+import {LayoutRightDirective} from "./layout/layout-right.directive";
+import {BreadcrumbComponent} from "./nav/breadcrumb.component";
 
 declare var layui;
 
@@ -49,20 +59,24 @@ declare var layui;
   declarations: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,InlineDirective,
+    LayoutComponent,HeaderComponent,SideComponent,BodyComponent,FooterComponent,LogoComponent,LayoutLeftDirective,LayoutRightDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
+    NavComponent,BreadcrumbComponent
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
     ColXsOffsetDirective,ColSmOffsetDirective,ColMdOffsetDirective,ColLgOffsetDirective,InlineDirective,
+    LayoutComponent,HeaderComponent,SideComponent,BodyComponent,FooterComponent,LogoComponent,LayoutLeftDirective,LayoutRightDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
+    NavComponent,BreadcrumbComponent
   ]
 })
 export class Ng2LayuiModule {

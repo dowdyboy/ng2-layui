@@ -1,1 +1,22 @@
-<h1>Main</h1>
+
+<layui-layout>
+  <layui-header>
+    <layui-logo>layui 后台布局</layui-logo>
+    <layui-nav layui-layout-left [items]="navItems" (select)="navItemSelected($event)"></layui-nav>
+  </layui-header>
+  <layui-side layui-color-bg="black">
+    side
+  </layui-side>
+  <layui-body>
+    <layui-breadcrumb [items]="navItems" separator="|" (select)="navItemSelected($event)"></layui-breadcrumb>
+    <p>0</p>
+    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+    <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+    <p>2</p>
+  </layui-body>
+  <layui-footer>
+    footer
+  </layui-footer>
+</layui-layout>
