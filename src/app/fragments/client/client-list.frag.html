@@ -1,0 +1,25 @@
+
+<div layui-inline>
+  <input layui-input layui-datetime-picker  />
+</div>
+<br/>
+<div>
+  <div layui-datetime-picker position="static" [max]="'2020-04-18'" [theme]="'molv'" [range]="'~'"></div>
+</div>
+
+<div>
+  <layui-table
+    [cols]="cols"
+    [colTemplates]="{d:aaa}"
+    [rows]="displayRows"
+    [totalCount]="rows.length"
+    [async]="true"
+    [hasPager]="true"
+    [pagerSize]="pageSize"
+    [loading]="loading"
+    (pagerChange)="pageChange($event)">
+    <ng-template #aaa let-row>
+      <layui-icon (click)="deleteButtonClick(row.a)" type="delete" style="color:red;font-size: 24px;cursor: pointer;"></layui-icon>
+    </ng-template>
+  </layui-table>
+</div>

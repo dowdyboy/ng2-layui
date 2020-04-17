@@ -15,6 +15,7 @@ import {ClientService} from "./services/client.service";
 import {StatisticService} from "./services/statistic.service";
 import {UserService} from "./services/user.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ClientListFrag} from "./fragments/client/client-list.frag";
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     Ng2LayuiModule.config({baseDir:'./assets/layui/'})
   ],
   declarations: [
-    AppComponent,LoginPage,MainPage,TestPage
+    AppComponent,LoginPage,MainPage,TestPage,
+    ClientListFrag,
   ],
   providers: [
     ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService

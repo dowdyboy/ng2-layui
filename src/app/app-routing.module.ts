@@ -4,6 +4,7 @@ import {LoginPage} from "./pages/login/login.page";
 import {MainPage} from "./pages/main/main.page";
 import {TestPage} from "./pages/test/test.page";
 import {UserAuthGuard, UserNotAuthGuard} from "./services/route-guard";
+import {ClientListFrag} from "./fragments/client/client-list.frag";
 
 
 const routes: Routes = [
@@ -15,7 +16,17 @@ const routes: Routes = [
   {
     path:'main',
     component:MainPage,
-    canActivate:[UserAuthGuard]
+    canActivate:[UserAuthGuard],
+    children:[
+      {
+        path:'client/list',
+        component:ClientListFrag
+      },
+      {
+        path:'**',
+        redirectTo:'client/list'
+      }
+    ]
   },
   {
     path:'test',

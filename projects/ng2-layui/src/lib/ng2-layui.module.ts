@@ -49,6 +49,9 @@ import {NavComponent} from "./nav/nav.component";
 import {LayoutLeftDirective} from "./layout/layout-left.directive";
 import {LayoutRightDirective} from "./layout/layout-right.directive";
 import {BreadcrumbComponent} from "./nav/breadcrumb.component";
+import {TableComponent} from "./table/table.component";
+import {PagerComponent} from "./pager/pager.component";
+import {DateTimePickerDirective} from "./datetime/date-time-picker.directive";
 
 declare var layui;
 
@@ -64,8 +67,9 @@ declare var layui;
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
-    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
-    NavComponent,BreadcrumbComponent
+    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
+    NavComponent,BreadcrumbComponent,
+    TableComponent,PagerComponent,
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
@@ -75,8 +79,9 @@ declare var layui;
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
-    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,
-    NavComponent,BreadcrumbComponent
+    FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
+    NavComponent,BreadcrumbComponent,
+    TableComponent,PagerComponent,
   ]
 })
 export class Ng2LayuiModule {
