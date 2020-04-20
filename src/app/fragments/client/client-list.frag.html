@@ -1,11 +1,8 @@
 
 <div layui-inline>
-  <input layui-input layui-datetime-picker  />
+  <input layui-input layui-datetime-picker (change)="timeChange($event)" />
 </div>
 <br/>
-<div>
-  <div layui-datetime-picker position="static" [max]="'2020-04-18'" [theme]="'molv'" [range]="'~'"></div>
-</div>
 
 <div>
   <layui-table

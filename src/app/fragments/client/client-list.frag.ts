@@ -60,4 +60,8 @@ export class ClientListFrag implements OnInit{
     alert(`删了${name}`)
   }
 
+  timeChange(e){
+    console.log(e)
+  }
+
 }

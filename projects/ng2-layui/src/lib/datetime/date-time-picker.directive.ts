@@ -1,4 +1,14 @@
-import {Directive, ElementRef, Input, NgZone, OnChanges, Renderer2, SimpleChanges} from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnChanges,
+  Output,
+  Renderer2,
+  SimpleChanges
+} from "@angular/core";
 
 declare var layui;
 
@@ -23,6 +33,8 @@ export class DateTimePickerDirective implements OnChanges{
   @Input('calendar') calendar:boolean = false
   @Input('mark') mark:{[key:string]:string} = null
 
+  @Output('change') change = new EventEmitter<{time:Date,endTime:Date}>()
+
   private queueCount:number = 0
   private prevDate:any = null
   private prevEndDate:any = null
@@ -36,18 +48,47 @@ export class DateTimePickerDirective implements OnChanges{
   }
 
   private comparePrevDate(date:any,endDate:any){
-    if(!this.prevDate || !this.prevEndDate){
-      this.prevDate = date
-      this.prevEndDate = endDate
+    let parseDate = (date:any)=>{
       let time = Object.keys(date).length>0?new Date():null
-      let endTime = Object.keys(endDate).length>0?new Date():null
       if(time){
         Object.keys(date).forEach(key=>{
-          console.log(key)
+          if(key == 'year') time.setFullYear(date[key])
+          if(key == 'month') time.setMonth(date[key] - 1)
+          if(key == 'date') time.setDate(date[key])
+          if(key == 'hours') time.setHours(date[key])
+          if(key == 'minutes') time.setMinutes(date[key])
+          if(key == 'seconds') time.setSeconds(date[key])
+          time.setMilliseconds(0)
         })
       }
+      return time
+    }
+    if(!this.prevDate){
+      this.prevDate = date
+      this.prevEndDate = endDate
+      let time = parseDate(date)
+      let endTime = parseDate(endDate)
+      return {
+        time:time,
+        endTime:endTime
+      }
     }else{
-
+      let prevTime = parseDate(this.prevDate)
+      let prevEndTime = parseDate(this.prevEndDate)
+      let time = parseDate(date)
+      let endTime = parseDate(endDate)
+      let ret = {
+        time:time,
+        endTime:endTime
+      }
+      if((prevTime != null && prevEndTime == null && prevTime.getTime() != time.getTime()) ||
+        (prevTime != null && prevEndTime != null && (prevTime.getTime() != time.getTime() || prevEndTime.getTime() != endTime.getTime()))){
+        this.prevDate = date
+        this.prevEndDate = endDate
+        return ret
+      }else{
+        return null
+      }
     }
   }
 
@@ -78,17 +119,20 @@ export class DateTimePickerDirective implements OnChanges{
             // console.log(d)
           },
           change:(value,d,endD)=>{
-            console.log('change')
-            console.log(value)
-            console.log(d)
-            console.log(endD)
-            this.comparePrevDate(d,endD)
+            // let timePair = this.comparePrevDate(d,endD)
+            // if(timePair){
+            //   this.zone.run(()=>{
+            //     this.change.emit(timePair)
+            //   })
+            // }
           },
           done:(value,d,endD)=>{
-            // console.log('done')
-            // console.log(value)
-            // console.log(d)
-            // console.log(endD)
+            let timePair = this.comparePrevDate(d,endD)
+            if(timePair){
+              this.zone.run(()=>{
+                this.change.emit(timePair)
+              })
+            }
           }
         })
         setTimeout(()=>{
