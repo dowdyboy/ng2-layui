@@ -66,3 +66,30 @@ export class UserNotAuthGuard implements CanActivate,CanActivateChild{
   }
 
 }
+
+@Injectable({providedIn:'root'})
+export class AdminRoleGuard implements CanActivate,CanActivateChild{
+
+  constructor(
+    private $auth:AuthenticationService,
+    private router:Router
+  ){}
+
+  private checkRoute(){
+    if(this.$auth.getRole() == 0){
+      return true
+    }else{
+      this.router.navigateByUrl('/main/statistic')
+      return false
+    }
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.checkRoute();
+  }
+
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.checkRoute();
+  }
+
+}

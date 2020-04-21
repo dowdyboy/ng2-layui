@@ -1,22 +1,18 @@
 
-<div layui-inline>
-  <input layui-input layui-datetime-picker (change)="timeChange($event)" />
-</div>
-<br/>
+
+<h2 layui-color="grey-6">Client列表</h2>
 
 <div>
-  <layui-table
-    [cols]="cols"
-    [colTemplates]="{d:aaa}"
-    [rows]="displayRows"
-    [totalCount]="rows.length"
-    [async]="true"
-    [hasPager]="true"
-    [pagerSize]="pageSize"
-    [loading]="loading"
-    (pagerChange)="pageChange($event)">
-    <ng-template #aaa let-row>
-      <layui-icon (click)="deleteButtonClick(row.a)" type="delete" style="color:red;font-size: 24px;cursor: pointer;"></layui-icon>
+  <div style="text-align: right">
+    <button layui-btn [size]="'sm'" (click)="addButtonClick()">
+      <layui-icon type="addition"></layui-icon>添加
+    </button>
+  </div>
+  <layui-table [cols]="cols" [rows]="rows" [hasPager]="true" [colTemplates]="{action:action}">
+    <ng-template #action let-row>
+      <layui-icon (click)="editButtonClick(row['client_id'])" type="edit" layui-color="blue" style="font-size: 24px;cursor: pointer;"></layui-icon>
+      &nbsp;
+      <layui-icon (click)="deleteButtonClick(row)" type="delete" layui-color="orange" style="font-size: 24px;cursor: pointer;"></layui-icon>
     </ng-template>
   </layui-table>
 </div>

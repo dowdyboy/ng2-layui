@@ -16,3 +16,33 @@
     Copyright 2020 EXCELSECU. All Rights Reserved.
   </layui-footer>
 </layui-layout>
+
+<div #changePasswd style="display: none;" >
+  <div style="padding: 20px">
+    <form layui-form>
+      <layui-form-item>
+        <layui-form-label>旧密码</layui-form-label>
+        <layui-form-input-block>
+          <input layui-input [verify]="'required'" name="oldPassword" type="password" placeholder="请输入当前密码">
+        </layui-form-input-block>
+      </layui-form-item>
+      <layui-form-item>
+        <layui-form-label>新密码</layui-form-label>
+        <layui-form-input-block>
+          <input layui-input [verify]="'required'" name="newPassword" type="password" placeholder="请输入新密码" >
+        </layui-form-input-block>
+      </layui-form-item>
+      <layui-form-item>
+        <layui-form-label>确认密码</layui-form-label>
+        <layui-form-input-block>
+          <input layui-input [verify]="'required'" name="rePassword" type="password" placeholder="请再次输入新密码" >
+        </layui-form-input-block>
+      </layui-form-item>
+      <layui-form-item>
+        <layui-form-input-block>
+          <button layui-btn layui-form-submit (submit)="changePasswordButtonClick($event)" type="button">修改密码</button>
+        </layui-form-input-block>
+      </layui-form-item>
+    </form>
+  </div>
+</div>

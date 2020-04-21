@@ -16,7 +16,7 @@ declare var layui;
 export class TableHeadConfig {
   title:string
   field:string
-  width?:number
+  width?:number|string
 }
 
 

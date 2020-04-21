@@ -34,6 +34,7 @@ export class DateTimePickerDirective implements OnChanges{
   @Input('mark') mark:{[key:string]:string} = null
 
   @Output('change') change = new EventEmitter<{time:Date,endTime:Date}>()
+  @Output('valueChange') valueChange = new EventEmitter<Date>()
 
   private queueCount:number = 0
   private prevDate:any = null
@@ -131,6 +132,7 @@ export class DateTimePickerDirective implements OnChanges{
             if(timePair){
               this.zone.run(()=>{
                 this.change.emit(timePair)
+                this.valueChange.emit(timePair.time)
               })
             }
           }

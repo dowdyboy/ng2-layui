@@ -1,19 +1,19 @@
 import {Component, OnInit} from "@angular/core";
 import {TableHeadConfig} from "../../../../projects/ng2-layui/src/lib/table/table.component";
-import {ClientService} from "../../services/client.service";
+import {UserService} from "../../services/user.service";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LayerConfig, LayerService} from "../../../../projects/ng2-layui/src/lib/layer/layer.service";
 
 
 @Component({
-  templateUrl:`client-list.frag.html`
+  templateUrl:'user-list.frag.html'
 })
-export class ClientListFrag implements OnInit{
+export class UserListFrag implements OnInit{
 
   cols:TableHeadConfig[] = [
-    {title:'Client ID',field:'client_id'},
-    {title:'Client名称',field:'client_name'},
+    {title:'用户名',field:'username'},
+    {title:'角色',field:'role'},
     {title:'状态',field:'state'},
     {title:'创建时间',field:'time'},
     {title:'操作',field:'action'}
@@ -21,18 +21,19 @@ export class ClientListFrag implements OnInit{
   rows:any[] = []
 
   constructor(
-    private $client:ClientService,
+    private $user:UserService,
     private router:Router,
     private route:ActivatedRoute,
     private layer:LayerService
   ){}
 
   private initialList(){
-    this.$client.list().subscribe(resp=>{
+    this.$user.list().subscribe(resp=>{
       if(resp.code == 0){
         let pipe = new DatePipe('en-US')
         this.rows = resp.data.map(x=>{
-          x.state = (x.state==0?'未激活':x.state==1?'已激活':'未知') as any
+          x.role = (x.role==0?'管理员':x.role==1?'普通用户':'未知') as any
+          x.state = (x.state==0?'未激活':x.state==1?'正常':'未知') as any
           x.time = (pipe.transform(x.time,'yyyy/MM/dd')) as any
           return x
         })
@@ -45,21 +46,21 @@ export class ClientListFrag implements OnInit{
   }
 
   addButtonClick(){
-    this.router.navigate(['client','add'],{relativeTo:this.route.parent})
+    this.router.navigate(['user','add'],{relativeTo:this.route.parent})
   }
 
-  editButtonClick(client_id:string){
-    this.router.navigate(['client','modify',client_id],{relativeTo:this.route.parent})
+  modifyButtonClick(row){
+    this.router.navigate(['user','modify',row.username],{relativeTo:this.route.parent})
   }
 
-  async deleteButtonClick(row){
-    await this.layer.alert(`删除该Client吗？【${row.client_name}】`,{
+  deleteButtonClick(row){
+    this.layer.alert(`删除该用户？【${row.username}】`,{
       icon:LayerConfig.ICON.QUESTION,
       closeBtn:false,
       btn:['删除','取消'],
       yes:(idx)=>{
         this.layer.close(idx)
-        this.$client.delete(row.client_id).subscribe(resp=>{
+        this.$user.delete(row.username).subscribe(resp=>{
           if(resp.code == 0){
             this.layer.msg('删除成功')
             this.initialList()

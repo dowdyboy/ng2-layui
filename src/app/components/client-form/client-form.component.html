@@ -1,0 +1,142 @@
+
+<form *ngIf="model" layui-form>
+  <layui-form-item *ngIf="!isModify">
+    <layui-form-label>Client ID</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="client_id" [verify]="'required'" type="text" name="client_id" placeholder="请输入该client的唯一ID" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item *ngIf="isModify">
+    <layui-form-label>Client ID</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="client_id" type="text" name="client_id" placeholder="请输入该client的唯一ID" disabled >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>Client名称</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="client_name" [verify]="'required'" type="text" name="client_name" placeholder="请输入该client的名称"  >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>转发基地址</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="client_forward_url" [verify]="'required|url'" type="text" name="client_forward_url" placeholder="请输入请求转发基地址，如：http://127.0.0.1:8080" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>路由前缀</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="client_prefix" [verify]="'required'" type="text" name="client_prefix" placeholder="请输入请求转发地址前缀，如：xt" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>抽奖策略</layui-form-label>
+    <layui-form-input-block>
+      <div *ngIf="lottery_strategy_config && lottery_strategy_config.length>0" >
+        <table layui-table [size]="'sm'">
+          <thead>
+          <tr>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>抽奖次数</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of lottery_strategy_config">
+            <td>{{item.start_time}}</td>
+            <td>{{item.end_time}}</td>
+            <td>{{item.limit}}</td>
+            <td>
+              <layui-icon (click)="strategyDeleteButtonClick(item)" type="delete" layui-color="orange" style="cursor: pointer;"></layui-icon>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div layui-row>
+          <div layui-col-sm="4">
+            <input layui-input layui-datetime-picker [pickType]="'datetime'" [(value)]="strategy_start_time" type="text" placeholder="开始时间" >
+          </div>
+          <div layui-col-sm="4">
+            <input layui-input layui-datetime-picker [pickType]="'datetime'" [(value)]="strategy_end_time" type="text" placeholder="结束时间" >
+          </div>
+          <div layui-col-sm="2">
+            <input layui-input [(ngModel)]="strategy_limit" type="text" name="strategy_limit"  placeholder="抽奖次数" >
+          </div>
+          <div layui-col-sm="2">
+            <button layui-btn-fluid (click)="strategyAddButtonClick()" [theme]="'primary'" type="button">新增策略</button>
+          </div>
+        </div>
+      </div>
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>自定义配置</layui-form-label>
+    <layui-form-input-block>
+      <table *ngIf="custom_config && custom_config.length>0" layui-table [size]="'sm'">
+        <thead>
+        <tr>
+          <th>键</th>
+          <th>值</th>
+          <th>备注</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of custom_config">
+          <td>{{item.key}}</td>
+          <td>{{item.value}}</td>
+          <td>{{item.comment}}</td>
+          <td>
+            <layui-icon (click)="customConfigDeleteButtonClick(item)" type="delete" layui-color="orange" style="cursor: pointer;"></layui-icon>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div>
+        <div layui-row>
+          <div layui-col-sm="4">
+            <input layui-input [(ngModel)]="custom_config_key" type="text" name="custom_config_key" placeholder="键" >
+          </div>
+          <div layui-col-sm="4">
+            <input layui-input [(ngModel)]="custom_config_value" type="text" name="custom_config_value" placeholder="值" >
+          </div>
+          <div layui-col-sm="2">
+            <input layui-input [(ngModel)]="custom_config_comment" type="text" name="custom_config_comment"  placeholder="备注" >
+          </div>
+          <div layui-col-sm="2">
+            <button (click)="customConfigAddButtonClick()" layui-btn-fluid [theme]="'primary'" type="button">新增配置</button>
+          </div>
+        </div>
+      </div>
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>起止时间</layui-form-label>
+    <layui-form-input-inline>
+      <input layui-input layui-datetime-picker [pickType]="'datetime'" [(value)]="start_time" type="text" placeholder="活动开始时间" >
+    </layui-form-input-inline>
+    <layui-form-text>-</layui-form-text>
+    <layui-form-input-inline>
+      <input layui-input layui-datetime-picker [pickType]="'datetime'" [(value)]="end_time" type="text" placeholder="活动结束时间" >
+    </layui-form-input-inline>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>状态</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input type="radio" title="激活" name="state" [(ngModel)]="state" value="1" >
+      <input layui-input type="radio" title="未激活" name="state" [(ngModel)]="state" value="0" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-input-block>
+      <button layui-btn layui-form-submit (submit)="submitHandler()" type="button" [disabled]="disabled">
+        {{isModify?'修改Client':'添加Client'}}
+      </button>
+      <button layui-btn (click)="backButtonClick()" [theme]="'primary'" type="button">返回</button>
+    </layui-form-input-block>
+  </layui-form-item>
+</form>

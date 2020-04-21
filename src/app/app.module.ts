@@ -16,6 +16,14 @@ import {StatisticService} from "./services/statistic.service";
 import {UserService} from "./services/user.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ClientListFrag} from "./fragments/client/client-list.frag";
+import {ClientAddFrag} from "./fragments/client/client-add.frag";
+import {ClientModifyFrag} from "./fragments/client/client-modify.frag";
+import {UserListFrag} from "./fragments/user/user-list.frag";
+import {UserAddFrag} from "./fragments/user/user-add.frag";
+import {UserModifyFrag} from "./fragments/user/user-modify.frag";
+import {StatisticFrag} from "./fragments/statistic/statistic.frag";
+import {ClientFormComponent} from "./components/client-form/client-form.component";
+import {UserFormComponent} from "./components/user-form/user-form.component";
 
 @NgModule({
   imports: [
@@ -28,7 +36,8 @@ import {ClientListFrag} from "./fragments/client/client-list.frag";
   ],
   declarations: [
     AppComponent,LoginPage,MainPage,TestPage,
-    ClientListFrag,
+    ClientListFrag,ClientAddFrag,ClientModifyFrag,UserListFrag,UserAddFrag,UserModifyFrag,StatisticFrag,
+    ClientFormComponent,UserFormComponent,
   ],
   providers: [
     ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService

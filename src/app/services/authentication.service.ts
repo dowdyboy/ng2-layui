@@ -88,4 +88,18 @@ export class AuthenticationService {
     }))
   }
 
+  getBindClient(){
+    return this.http.get<HttpResponseData<{client_id:string,client_name:string}[]>>(this.$conf.AUTH_URLS.GET_BIND_CLIENT.get(this.getToken()))
+      .pipe(
+        map(resp=>{
+          if(resp.code == 0){
+            resp.data = (resp.data as any).clients
+          }else{
+            resp.data = []
+          }
+          return resp
+        })
+      )
+  }
+
 }

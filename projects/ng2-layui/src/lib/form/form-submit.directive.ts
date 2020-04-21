@@ -7,7 +7,7 @@ declare var layui;
 })
 export class FormSubmitDirective {
 
-  @Input('preventSubmit') preventSubmit = false
+  @Input('preventSubmit') preventSubmit = true
   @Output('submit') submit = new EventEmitter<any>()
 
   private layFilter:string = `LF-SUBMIT-${new Date().getTime()}${Math.floor(Math.random()*99999)}`

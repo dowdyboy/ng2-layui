@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, Output, Renderer2} from "@angular/core";
+import {
+  AfterContentChecked,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnChanges,
+  Output,
+  Renderer2
+} from "@angular/core";
 
 declare var layui;
 
@@ -8,7 +18,7 @@ declare var layui;
   <ng-content></ng-content>  
   `
 })
-export class InputComponent implements OnChanges {
+export class InputComponent implements OnChanges,AfterContentChecked {
 
   @Input('skin') skin:string = 'default'
   @Input('switchOnText') switchOnText:string = null
@@ -21,6 +31,7 @@ export class InputComponent implements OnChanges {
   @Output('ngModelChange') ngModelChange:EventEmitter<any> = new EventEmitter()
 
   private layFilter:string = `LF-INPUT-${new Date().getTime()}${Math.floor(Math.random()*99999)}`
+  private selectOptionCount = 0
 
   constructor(
     private ef:ElementRef,
@@ -32,7 +43,8 @@ export class InputComponent implements OnChanges {
       this.render.addClass(this.ef.nativeElement,'layui-input')
       if(this.ef.nativeElement.type == 'checkbox'){
         layui.use('form',()=>{
-          layui.form.render('checkbox',this.layFilter)
+          // layui.form.render('checkbox',this.layFilter)
+          layui.form.render('checkbox')
           layui.form.on(`checkbox(${this.layFilter})`,d=>{
             this.zone.run(()=>{
               this.ngModelChange.emit(d.elem.checked)
@@ -47,7 +59,8 @@ export class InputComponent implements OnChanges {
       }
       if(this.ef.nativeElement.type == 'radio'){
         layui.use('form',()=>{
-          layui.form.render('radio',this.layFilter)
+          // layui.form.render('radio',this.layFilter)
+          layui.form.render('radio')
           layui.form.on(`radio(${this.layFilter})`,d=>{
             this.zone.run(()=>{
               this.ngModelChange.emit(d.value)
@@ -58,7 +71,8 @@ export class InputComponent implements OnChanges {
     }
     if(this.ef.nativeElement.nodeName.toLowerCase() == 'select'){
       layui.use('form',()=>{
-        layui.form.render('select',this.layFilter)
+        // layui.form.render('select',this.layFilter)
+        layui.form.render('select')
         layui.form.on(`select(${this.layFilter})`,d=>{
           this.zone.run(()=>{
             this.ngModelChange.emit(d.value)
@@ -69,17 +83,25 @@ export class InputComponent implements OnChanges {
     if(this.ef.nativeElement.nodeName.toLowerCase() == 'textarea'){
       this.render.addClass(this.ef.nativeElement,'layui-textarea')
     }
+    this.layuiRender()
   }
 
   private layuiRender(){
     setTimeout(()=>{
       layui.use('form',()=>{
         if(this.ef.nativeElement.nodeName.toLowerCase() == 'input'){
-          if(this.ef.nativeElement.type == 'checkbox') layui.form.render('checkbox',this.layFilter)
-          if(this.ef.nativeElement.type == 'radio') layui.form.render('radio',this.layFilter)
+          if(this.ef.nativeElement.type == 'checkbox') {
+            // layui.form.render('checkbox',this.layFilter)
+            layui.form.render('checkbox')
+          }
+          if(this.ef.nativeElement.type == 'radio') {
+            // layui.form.render('radio',this.layFilter)
+            layui.form.render('radio')
+          }
         }
         if(this.ef.nativeElement.nodeName.toLowerCase() == 'select'){
-          layui.form.render('select',this.layFilter)
+          // layui.form.render('select',this.layFilter)
+          layui.form.render('select')
         }
       })
     },100)
@@ -129,6 +151,16 @@ export class InputComponent implements OnChanges {
       }
     }
     this.layuiRender()
+  }
+
+  ngAfterContentChecked(): void {
+    if(this.ef.nativeElement.nodeName.toLowerCase() == 'select'){
+      let nowOptionCount = layui.$(this.ef.nativeElement).find('option').length
+      if(this.selectOptionCount != nowOptionCount){
+        this.layuiRender()
+        this.selectOptionCount = nowOptionCount
+      }
+    }
   }
 
 }

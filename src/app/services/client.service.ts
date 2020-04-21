@@ -60,13 +60,13 @@ export class ClientService {
     return this.http.post<HttpResponseData<{}>>(this.$conf.CLIENT_URLS.MODIFY.get(),JSON.stringify({
       token:this.$auth.getToken(),
       client_id:client_id,client_prefix:client_prefix,client_forward_url:client_forward_url,client_name:client_name,
-      lottery_strategy_config:{strategies:lottery_strategy_config.map(x=>{
-        return {
-          start_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.start_time)),
-          end_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.end_time)),
-          limit:x.limit
-        }
-      })},
+      lottery_strategy_config:JSON.stringify({strategies:lottery_strategy_config.map(x=>{
+          return {
+            start_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.start_time)),
+            end_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.end_time)),
+            limit:x.limit
+          }
+        })}),
       custom_config:custom_config,start_time:start_time,end_time:end_time,state:state
     }))
   }
@@ -77,16 +77,16 @@ export class ClientService {
     custom_config:any,
     start_time:number,end_time:number,state:number
   ){
-    return this.http.post(this.$conf.CLIENT_URLS.PUT.get(),JSON.stringify({
+    return this.http.post<HttpResponseData<{}>>(this.$conf.CLIENT_URLS.PUT.get(),JSON.stringify({
       token:this.$auth.getToken(),
       client_id:client_id,client_prefix:client_prefix,client_forward_url:client_forward_url,client_name:client_name,
-      lottery_strategy_config:{strategies:lottery_strategy_config.map(x=>{
+      lottery_strategy_config:JSON.stringify({strategies:lottery_strategy_config.map(x=>{
           return {
             start_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.start_time)),
             end_time:TimeUtil.format('YYYY/MM/DD-HH:mm:ss',new Date(x.end_time)),
             limit:x.limit
           }
-        })},
+        })}),
       custom_config:custom_config,start_time:start_time,end_time:end_time,state:state
     }))
   }

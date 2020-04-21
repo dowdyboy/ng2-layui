@@ -101,6 +101,12 @@ export class LayerConfig {
     public success?:(dom:any,index:number)=>any,
     public yes?:(index:number,dom:any)=>any,
     public cancel?:(index:number,dom:any)=>boolean,
+    public btn2?:(index:number,dom:any)=>boolean,
+    public btn3?:(index:number,dom:any)=>boolean,
+    public btn4?:(index:number,dom:any)=>boolean,
+    public btn5?:(index:number,dom:any)=>boolean,
+    public btn6?:(index:number,dom:any)=>boolean,
+    public btn7?:(index:number,dom:any)=>boolean,
     public end?:()=>any,
     public full?:()=>any,
     public min?:()=>any,
@@ -151,6 +157,12 @@ export class PromptLayerConfig extends LayerConfig{
     public success?:(dom:any,index:number)=>any,
     public yes?:(index:number,dom:any)=>any,
     public cancel?:(index:number,dom:any)=>boolean,
+    public btn2?:(index:number,dom:any)=>boolean,
+    public btn3?:(index:number,dom:any)=>boolean,
+    public btn4?:(index:number,dom:any)=>boolean,
+    public btn5?:(index:number,dom:any)=>boolean,
+    public btn6?:(index:number,dom:any)=>boolean,
+    public btn7?:(index:number,dom:any)=>boolean,
     public end?:()=>any,
     public full?:()=>any,
     public min?:()=>any,
@@ -164,7 +176,7 @@ export class PromptLayerConfig extends LayerConfig{
     super(
       type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
       anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
-      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel,btn2,btn3,btn4,btn5,btn6,btn7, end, full, min, restore, path, extend
     )
   }
 }
@@ -204,6 +216,12 @@ export class TabLayerConfig extends LayerConfig{
     public success?:(dom:any,index:number)=>any,
     public yes?:(index:number,dom:any)=>any,
     public cancel?:(index:number,dom:any)=>boolean,
+    public btn2?:(index:number,dom:any)=>boolean,
+    public btn3?:(index:number,dom:any)=>boolean,
+    public btn4?:(index:number,dom:any)=>boolean,
+    public btn5?:(index:number,dom:any)=>boolean,
+    public btn6?:(index:number,dom:any)=>boolean,
+    public btn7?:(index:number,dom:any)=>boolean,
     public end?:()=>any,
     public full?:()=>any,
     public min?:()=>any,
@@ -215,7 +233,7 @@ export class TabLayerConfig extends LayerConfig{
     super(
       type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
       anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
-      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel,btn2,btn3,btn4,btn5,btn6,btn7, end, full, min, restore, path, extend
     )
   }
 }
@@ -255,6 +273,12 @@ export class PhotosLayerConfig extends LayerConfig{
     public success?:(dom:any,index:number)=>any,
     public yes?:(index:number,dom:any)=>any,
     public cancel?:(index:number,dom:any)=>boolean,
+    public btn2?:(index:number,dom:any)=>boolean,
+    public btn3?:(index:number,dom:any)=>boolean,
+    public btn4?:(index:number,dom:any)=>boolean,
+    public btn5?:(index:number,dom:any)=>boolean,
+    public btn6?:(index:number,dom:any)=>boolean,
+    public btn7?:(index:number,dom:any)=>boolean,
     public end?:()=>any,
     public full?:()=>any,
     public min?:()=>any,
@@ -267,7 +291,7 @@ export class PhotosLayerConfig extends LayerConfig{
     super(
       type, title, content, skin, area, offset, icon, btn, btnAlign, closeBtn, shade, shadeClose, time, id,
       anim, isOutAnim, maxmin, fixed, resize, resizing, scrollbar, maxWidth, maxHeight, zIndex, move,
-      moveOut, moveEnd, tips, tipsMore, success, yes, cancel, end, full, min, restore, path, extend
+      moveOut, moveEnd, tips, tipsMore, success, yes, cancel,btn2,btn3,btn4,btn5,btn6,btn7, end, full, min, restore, path, extend
     )
   }
 }
@@ -290,6 +314,15 @@ export class LayerService {
     }
   }
 
+  private transformLayerConfig(config:LayerConfig){
+    if(config){
+      if(config.content){
+        if(config.content.innerHTML) config.content = layui.$(config.content)
+      }
+    }
+    return config
+  }
+
   private layer(next:(layer:any)=>any){
     layui.use('layer', ()=>{
       let layer = layui.layer
@@ -298,6 +331,7 @@ export class LayerService {
   }
 
   msg(msg:string,conf?:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise((resolve,reject)=>{
       this.layer(layer=>{
         layer.msg(msg,conf?conf:{},()=>{resolve()})
@@ -306,6 +340,7 @@ export class LayerService {
   }
 
   alert(msg:string,conf?:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         layer.alert(msg,conf?conf:{},idx=>{resolve(idx)})
@@ -314,6 +349,7 @@ export class LayerService {
   }
 
   confirm(msg:string,conf?:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         layer.confirm(msg,conf?conf:{},idx=>{resolve(idx)})
@@ -322,6 +358,7 @@ export class LayerService {
   }
 
   load(icon?:number,conf?:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise<number>((resolve,reject)=>{
       this.layer(layer=>{
         resolve(layer.load(icon,conf))
@@ -330,12 +367,14 @@ export class LayerService {
   }
 
   tips(msg:string,dom:any,conf?:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     this.layer(layer=>{
       layer.tips(msg,dom,conf?conf:{})
     })
   }
 
   prompt(conf?:PromptLayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise<{value:string,index:number,elem:any}>((resolve,reject)=>{
       this.layer(layer => {
         layer.prompt(conf?conf:{},(value,index,elem)=>{resolve({value,index,elem})})
@@ -344,12 +383,14 @@ export class LayerService {
   }
 
   tab(conf?:TabLayerConfig){
+    conf = this.transformLayerConfig(conf)
     this.layer(layer => {
       layer.tab(conf?conf:{})
     })
   }
 
   photos(conf?:PhotosLayerConfig){
+    conf = this.transformLayerConfig(conf)
     this.layer(layer => {
       layer.photos(conf?conf:{})
     })
@@ -368,6 +409,7 @@ export class LayerService {
   }
 
   open(conf:LayerConfig){
+    conf = this.transformLayerConfig(conf)
     return new Promise<number>((resolve,reject)=>{
       this.layer(layer => {
         resolve(layer.open(conf))

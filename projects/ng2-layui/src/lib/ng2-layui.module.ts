@@ -52,6 +52,7 @@ import {BreadcrumbComponent} from "./nav/breadcrumb.component";
 import {TableComponent} from "./table/table.component";
 import {PagerComponent} from "./pager/pager.component";
 import {DateTimePickerDirective} from "./datetime/date-time-picker.directive";
+import {TableDirective} from "./table/table.directive";
 
 declare var layui;
 
@@ -69,7 +70,7 @@ declare var layui;
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
     NavComponent,BreadcrumbComponent,
-    TableComponent,PagerComponent,
+    TableComponent,TableDirective,PagerComponent,
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
@@ -81,7 +82,7 @@ declare var layui;
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
     NavComponent,BreadcrumbComponent,
-    TableComponent,PagerComponent,
+    TableComponent,TableDirective,PagerComponent,
   ]
 })
 export class Ng2LayuiModule {

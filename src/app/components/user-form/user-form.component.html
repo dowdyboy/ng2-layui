@@ -1,0 +1,79 @@
+
+<form *ngIf="model" layui-form>
+  <layui-form-item *ngIf="!isModify">
+    <layui-form-label>用户名</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="username" [verify]="'required'" type="text" name="username" placeholder="请输入用户名" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item *ngIf="isModify">
+    <layui-form-label>用户名</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="username" type="text" name="username" placeholder="请输入用户名" disabled >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>密码</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="password" type="text" name="password" placeholder="请配置用户密码，添加用户时必填" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>角色</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="role" type="radio" name="role" title="普通用户" value="1"  >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>状态</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="state" type="radio" name="state" title="未激活" value="0"  >
+      <input layui-input [(ngModel)]="state" type="radio" name="state" title="正常" value="1"  >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>绑定Client</layui-form-label>
+    <layui-form-input-block>
+      <div *ngIf="clients && clients.length>0">
+        <table layui-table [size]="'sm'">
+          <thead>
+          <tr>
+            <th>Client ID</th>
+            <th>Client名称</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of clients">
+            <td>{{item}}</td>
+            <td>{{getClientName(item,clientList)}}</td>
+            <td>
+              <layui-icon (click)="unbindClientIdButtonClick(item)" type="delete" layui-color="orange" style="cursor: pointer;"></layui-icon>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div layui-row>
+          <div layui-col-sm="10">
+            <select layui-input [(ngModel)]="selectClientId" name="clients">
+              <option *ngFor="let item of clientList" [value]="item['client_id']">{{item['client_id']}} - {{item['client_name']}}</option>
+            </select>
+          </div>
+          <div layui-col-sm="2">
+            <button (click)="bindClientIdButtonClick()" layui-btn-fluid [theme]="'primary'" type="button">添加绑定</button>
+          </div>
+        </div>
+      </div>
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-input-block>
+      <button layui-btn layui-form-submit (submit)="submitButtonHandler()" type="button" [disabled]="disabled">
+        {{isModify?'修改用户':'添加用户'}}
+      </button>
+      <button (click)="backButtonClick()" layui-btn [theme]="'primary'" type="button">返回</button>
+    </layui-form-input-block>
+  </layui-form-item>
+</form>

@@ -1,0 +1,13 @@
+
+<h2 layui-color="grey-6">用户修改</h2>
+
+<br/>
+
+<div layui-fluid>
+  <div layui-row>
+    <div layui-col-sm="8">
+      <es-user-form [model]="model" [disabled]="submitting" (submit)="submitHandler($event)" (back)="backHandler()"></es-user-form>
+    </div>
+    <div layui-col-sm="4"></div>
+  </div>
+</div>

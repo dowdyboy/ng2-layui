@@ -13,7 +13,8 @@ export class ConfigurationService {
   AUTH_URLS = {
     LOGIN:new Url(`${this.API_BASE_URL}/api/login`),
     LOGOUT:new Url(`${this.API_BASE_URL}/api/logout`),
-    CHANGE_PWD:new Url(`${this.API_BASE_URL}/api/password/change`)
+    CHANGE_PWD:new Url(`${this.API_BASE_URL}/api/password/change`),
+    GET_BIND_CLIENT:new Url(`${this.API_BASE_URL}/api/bind/client/get?token=$0`)
   }
 
   CLIENT_URLS = {
