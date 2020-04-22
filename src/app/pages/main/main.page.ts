@@ -53,7 +53,7 @@ export class MainPage implements OnInit{
         },
         {
           id:'statistic',
-          text:'统计数据'
+          text:'数据统计'
         }
       ]
     }else if(this.$auth.getRole() == 1){

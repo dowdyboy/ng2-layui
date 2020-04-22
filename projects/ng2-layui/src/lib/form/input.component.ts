@@ -1,6 +1,6 @@
 import {
   AfterContentChecked,
-  Component,
+  Component, DoCheck,
   ElementRef,
   EventEmitter,
   Input,
@@ -18,7 +18,7 @@ declare var layui;
   <ng-content></ng-content>  
   `
 })
-export class InputComponent implements OnChanges,AfterContentChecked {
+export class InputComponent implements OnChanges,AfterContentChecked,DoCheck {
 
   @Input('skin') skin:string = 'default'
   @Input('switchOnText') switchOnText:string = null
@@ -32,6 +32,7 @@ export class InputComponent implements OnChanges,AfterContentChecked {
 
   private layFilter:string = `LF-INPUT-${new Date().getTime()}${Math.floor(Math.random()*99999)}`
   private selectOptionCount = 0
+  private radioCheckState = false
 
   constructor(
     private ef:ElementRef,
@@ -86,7 +87,7 @@ export class InputComponent implements OnChanges,AfterContentChecked {
     this.layuiRender()
   }
 
-  private layuiRender(){
+  private layuiRender(cb?:()=>void){
     setTimeout(()=>{
       layui.use('form',()=>{
         if(this.ef.nativeElement.nodeName.toLowerCase() == 'input'){
@@ -103,6 +104,7 @@ export class InputComponent implements OnChanges,AfterContentChecked {
           // layui.form.render('select',this.layFilter)
           layui.form.render('select')
         }
+        if(cb) cb()
       })
     },100)
   }
@@ -159,6 +161,17 @@ export class InputComponent implements OnChanges,AfterContentChecked {
       if(this.selectOptionCount != nowOptionCount){
         this.layuiRender()
         this.selectOptionCount = nowOptionCount
+      }
+    }
+  }
+
+  ngDoCheck(): void {
+    if(this.ef.nativeElement.nodeName.toLowerCase() == 'input'){
+      if(this.ef.nativeElement.type == 'radio'){
+        if(this.radioCheckState != this.ef.nativeElement.checked){
+          this.radioCheckState = this.ef.nativeElement.checked
+          this.layuiRender()
+        }
       }
     }
   }

@@ -1,2 +1,100 @@
 
-<h1>Statistic</h1>
+<h2 layui-color="grey-6">数据统计</h2>
+<br/>
+<div layui-row>
+  <div layui-col-sm="4">
+    <form layui-form>
+      <layui-form-item>
+        <layui-form-label>Client名称</layui-form-label>
+        <layui-form-input-block>
+          <select layui-input [value]="selectClientId" (ngModelChange)="selectChangeHandler($event)" name="client_id">
+            <option *ngFor="let item of clients" [value]="item.client_id">{{item.client_name}}</option>
+          </select>
+        </layui-form-input-block>
+      </layui-form-item>
+    </form>
+  </div>
+  <div layui-col-sm="8">
+    <form layui-form>
+      <layui-form-item>
+        <layui-form-label>起止时间</layui-form-label>
+        <layui-form-input-inline>
+          <input layui-input layui-datetime-picker [pickType]="'date'" [value]="start_time" (valueChange)="startTimeChange($event)" type="text" >
+        </layui-form-input-inline>
+        <layui-form-text>-</layui-form-text>
+        <layui-form-input-inline>
+          <input layui-input layui-datetime-picker [pickType]="'date'" [value]="end_time" (valueChange)="endTimeChange($event)" type="text" >
+        </layui-form-input-inline>
+      </layui-form-item>
+    </form>
+  </div>
+</div>
+<div layui-row layui-col-space="25">
+  <div layui-col-sm="4">
+    <div class="number-panel">
+      <div class="title-text">访问次数</div>
+      <div class="number-text">
+        <layui-icon type="chart" class="icon"></layui-icon>
+        <span style="font-size: 24px;">&nbsp;</span>
+        <strong>{{accessTotalCount}}</strong>
+      </div>
+    </div>
+  </div>
+  <div layui-col-sm="4">
+    <div class="number-panel">
+      <div class="title-text">支付次数</div>
+      <div class="number-text">
+        <layui-icon type="rmb" class="icon"></layui-icon>
+        <span style="font-size: 24px;">&nbsp;</span>
+        <strong>{{payTotalCount}}</strong>
+      </div>
+    </div>
+  </div>
+  <div layui-col-sm="4">
+    <div class="number-panel">
+      <div class="title-text">动户次数</div>
+      <div class="number-text">
+        <layui-icon type="user" class="icon"></layui-icon>
+        <span style="font-size: 24px;">&nbsp;</span>
+        <strong>{{activeTotalCount}}</strong>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div *ngIf="timelineChartOption" layui-row>
+  <div layui-col-sm="12">
+    <div echarts [options]="timelineChartOption"></div>
+  </div>
+</div>
+<br/>
+<div *ngIf="typelineChartOption" layui-row>
+  <div layui-col-sm="12">
+    <div echarts [options]="typelineChartOption"></div>
+  </div>
+</div>
+
+<h3 style="font-weight: bolder;text-indent: 10px;">奖品派发详情</h3>
+<div style="text-align: right;">
+  <form layui-form>
+    <input layui-input [(ngModel)]="timeOrder" (ngModelChange)="timeOrderSelectChange()" type="radio" name="timeOrder" value="desc" title="时间倒序" >
+    <input layui-input [(ngModel)]="timeOrder" (ngModelChange)="timeOrderSelectChange()" type="radio" name="timeOrder" value="asc" title="时间正序" >
+    <button (click)="exportButtonClick()" [disabled]="exportState=='WAIT'" layui-btn [theme]="'primary'" type="button">
+      {{exportState=='READY'?'导出':exportState=='WAIT'?'导出中...':exportState=='SUCCESS'?'点击下载':''}}
+    </button>
+  </form>
+</div>
+<div layui-row>
+  <div layui-col-sm="12">
+    <layui-table
+      [cols]="cols"
+      [rows]="rows"
+      [async]="true"
+      [loading]="loading"
+      [totalCount]="totalCount"
+      [hasPager]="true"
+      [pagerSize]="pageSize"
+      [pagerSizes]="pageSizeList"
+      (pagerChange)="pageChangeHandler($event)"></layui-table>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class ColXsDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-xs[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-xs${this.size} `
+    this.ef.nativeElement.className += ` layui-col-xs${this.size} `
   }
 }
 
@@ -28,7 +28,7 @@ export class ColSmDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-sm[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-sm${this.size} `
+    this.ef.nativeElement.className += ` layui-col-sm${this.size} `
   }
 }
 
@@ -44,7 +44,7 @@ export class ColMdDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-md[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-md${this.size} `
+    this.ef.nativeElement.className += ` layui-col-md${this.size} `
   }
 }
 
@@ -60,13 +60,13 @@ export class ColLgDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-lg[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-lg${this.size} `
+    this.ef.nativeElement.className += ` layui-col-lg${this.size} `
   }
 }
 
 
 @Directive({
-  selector:'layui-col-space'
+  selector:'[layui-col-space]'
 })
 export class ColSpaceDirective implements OnChanges{
 
@@ -78,7 +78,7 @@ export class ColSpaceDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-space[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-space${this.size} `
+    this.ef.nativeElement.className += ` layui-col-space${this.size} `
   }
 }
 
@@ -96,7 +96,7 @@ export class ColXsOffsetDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-xs-offset[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-xs-offset${this.size} `
+    this.ef.nativeElement.className += ` layui-col-xs-offset${this.size} `
   }
 }
 
@@ -114,7 +114,7 @@ export class ColSmOffsetDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-sm-offset[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-sm-offset${this.size} `
+    this.ef.nativeElement.className += ` layui-col-sm-offset${this.size} `
   }
 }
 
@@ -133,7 +133,7 @@ export class ColMdOffsetDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-md-offset[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-md-offset${this.size} `
+    this.ef.nativeElement.className += ` layui-col-md-offset${this.size} `
   }
 }
 
@@ -151,6 +151,6 @@ export class ColLgOffsetDirective implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.ef.nativeElement.className = this.ef.nativeElement.className.replace(/\s?layui-col-lg-offset[0-9]+\s?/,' ')
-    this.ef.nativeElement.className += `layui-col-lg-offset${this.size} `
+    this.ef.nativeElement.className += ` layui-col-lg-offset${this.size} `
   }
 }
