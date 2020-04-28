@@ -1,0 +1,51 @@
+.layui-layout-admin .layui-logo { color: #00a0e9 } .layui-elem-quote { border-left-color: #00a0e9 } .layui-btn { background-color: #00a0e9    } .layui-btn-primary { background-color: #fff } .layui-btn-primary:hover { border-color: #00a0e9 } .layui-btn-group .layui-btn-primary:hover { color: #00a0e9 } .layui-laypage a:hover { color: #00a0e9 } .layui-laypage .layui-laypage-curr .layui-laypage-em { background-color: #00a0e9 } .layui-laypage select:focus { border-color: #00a0e9 !important } .layui-upload-drag .layui-icon { font-size: 50px; color: #00a0e9 } .layui-upload-drag[lay-over] { border-color: #00a0e9 } .layui-nav-tree .layui-nav-child dd.layui-this a { background-color: #00a0e9 } .layui-nav-tree .layui-nav-bar { background-color: #00a0e9 } .layui-tab-brief > .layui-tab-title .layui-this { color: #00a0e9 } .layui-slider-input-btn i:hover { color: #00a0e9 } .layui-slider-wrap-btn { border-color: #00a0e9 !important } .layui-slider-bar { background: #00a0e9 !important } html .layui-laydate .layui-this { background-color: #00a0e9 !important } .laydate-theme-molv .layui-laydate-header { background-color: #00a0e9 } .laydate-theme-grid .laydate-selected, .laydate-theme-grid .laydate-selected:hover { color: #00a0e9 !important } .layui-progress-bar { background-color: #f5a100 } .layui-form-select dl dd.layui-this { background-color: #f5a100 } .layui-form-checked, .layui-form-checked:hover { border-color: #f5a100 } .layui-form-checked span, .layui-form-checked:hover span { background-color: #f5a100 } .layui-form-checked i, .layui-form-checked:hover i { color: #f5a100 } .layui-form-checkbox[lay-skin=primary]:hover i { border-color: #f5a100 } .layui-form-checked[lay-skin=primary] i { border-color: #f5a100; background-color: #f5a100 } .layui-form-onswitch { border-color: #f5a100; background-color: #f5a100 } .layui-form-radio > i:hover, .layui-form-radioed > i { color: #f5a100 } .layui-table-edit:focus { border-color: #f5a100 !important } .layui-nav-tree .layui-nav-itemed:after { background-color: #f5a100 } .layui-nav-child dd.layui-this { background-color: #f5a100 } .layui-nav .layui-nav-child dd.layui-this a { background-color: #f5a100 } .layui-breadcrumb a:hover { color: #f5a100 !important } .layui-tab-brief > .layui-tab-more li.layui-this:after, .layui-tab-brief > .layui-tab-title .layui-this:after { border-bottom: 2px solid #f5a100 } .layui-tab-card > .layui-tab-more .layui-this { color: #f5a100 } .layui-timeline-axis { color: #f5a100 } .laydate-day-mark::after { background-color: #f5a100 !important } .layui-laydate-header i:hover, .layui-laydate-header span:hover { color: #f5a100 !important } .layui-laydate-footer span:hover { color: #f5a100 !important } .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after { background-color: #f5a100 !important } .layui-transfer-active .layui-btn { background-color: #f5a100; border-color: #f5a100; } .layui-form-checked[lay-skin=primary] i { border-color: #f5a100!important; background-color: #f5a100; } .layui-btn-normal{background-color: #00a0e9;} .layui-btn-warm{background-color: #FFB800;} .layui-btn-danger{background-color: #f5a100;} .layui-btn-disabled,.layui-btn-disabled:hover,.layui-btn-disabled:active{background-color: #FBFBFB;}
+
+body{
+  background-color: #eeeeee;
+}
+
+.layui-layout-admin .layui-header{
+  /*background-color: #1E9FFF;*/
+  background-color: white;
+}
+.layui-layout-admin .layui-logo{
+  color:white;
+}
+.layui-layout-admin .layui-header .layui-nav a{
+  color: black !important;
+}
+.layui-layout-admin .layui-header .layui-nav a .layui-nav-more{
+  border-top-color: black;
+}
+.layui-layout-admin .layui-header .layui-nav a:hover .layui-nav-more{
+  border-color: transparent transparent black;
+}
+
+.es-container .layui-nav{
+  background-color: white !important;
+}
+.es-container .layui-nav a{
+  color: black !important;
+}
+.es-container .layui-nav a:hover{
+  background-color: #dddddd !important;
+}
+.es-container .layui-nav-tree .layui-this > a{
+  background-color: #dddddd !important;
+}
+
+.es-content{
+  background-color: white;
+}
+
+.es-footer{
+  background-color: white;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #cccccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

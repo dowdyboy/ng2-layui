@@ -1,20 +1,39 @@
 
 <layui-layout>
   <layui-header>
-    <layui-logo>营销活动管理系统</layui-logo>
+    <layui-logo>
+      <img src="assets/images/logo.png" style="width:70%;display: block;margin-top: 10px;margin-left: 20px;" >
+      <div style="width:70%;display: block;line-height: 16px;color: black;padding-top: 5px;padding-left:20px;text-align: left;color: #cccccc;">营销活动管理系统</div>
+    </layui-logo>
     <layui-nav layui-layout-right [items]="topNavItems" [autoSelect]="false" (select)="navItemSelected($event)"></layui-nav>
   </layui-header>
-  <layui-side layui-color-bg="black">
-    <layui-nav [type]="'vertical'" [items]="sideNavItems" (select)="navItemSelected($event)"></layui-nav>
-  </layui-side>
-  <layui-body>
-    <div style="padding: 20px">
-      <router-outlet></router-outlet>
+  <br/>
+  <div class="es-container" layui-fluid>
+    <div layui-row layui-col-space="10">
+      <div layui-col-xs="2">
+        <layui-nav style="width:100%" [type]="'vertical'" [items]="sideNavItems" (select)="navItemSelected($event)"></layui-nav>
+      </div>
+      <div layui-col-xs="10">
+        <div class="es-content" style="padding: 20px;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </div>
-  </layui-body>
-  <layui-footer>
-    Copyright 2020 EXCELSECU. All Rights Reserved.
-  </layui-footer>
+  </div>
+  <br/>
+  <div style="height: 60px;"></div>
+  <div class="es-footer">
+    2019 - 2020 © excelsecu
+  </div>
+<!--  <layui-side layui-color-bg="black">-->
+<!--    -->
+<!--  </layui-side>-->
+<!--  <layui-body>-->
+<!--    -->
+<!--  </layui-body>-->
+<!--  <layui-footer>-->
+<!--    Copyright 2020 EXCELSECU. All Rights Reserved.-->
+<!--  </layui-footer>-->
 </layui-layout>
 
 <div #changePasswd style="display: none;" >

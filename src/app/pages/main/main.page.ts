@@ -108,7 +108,7 @@ export class MainPage implements OnInit{
         this.layer.msg('修改密码成功')
         setTimeout(()=>{this.layer.closeAll()},3000)
       }else{
-        this.layer.msg('修改密码失败')
+        this.layer.msg('旧密码错误')
       }
     })
   }

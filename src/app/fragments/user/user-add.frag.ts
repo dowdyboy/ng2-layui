@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {UserModel} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
 import {LayerService} from "../../../../projects/ng2-layui/src/lib/layer/layer.service";
+import {HttpResponseData} from "../../models/http-response-data.model";
 
 
 @Component({
@@ -34,6 +35,9 @@ export class UserAddFrag {
             this.backHandler()
           }
         })
+      }
+      if(resp.code == HttpResponseData.RESPONSE_CODE.ADD_USER_MULTI_ERROR){
+        this.layer.msg('用户名重复')
       }
       this.submitting = false
     })

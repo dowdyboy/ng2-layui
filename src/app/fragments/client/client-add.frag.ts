@@ -3,6 +3,7 @@ import {ClientModel} from "../../models/client.model";
 import {ClientService} from "../../services/client.service";
 import {TimeUtil} from "../../utils/time.util";
 import {LayerService} from "../../../../projects/ng2-layui/src/lib/layer/layer.service";
+import {HttpResponseData} from "../../models/http-response-data.model";
 
 
 @Component({
@@ -45,6 +46,9 @@ export class ClientAddFrag {
             this.backHandler()
           }
         })
+      }
+      if(resp.code == HttpResponseData.RESPONSE_CODE.CLIENT_ADD_MULTI_ERROR){
+        this.layer.msg('Client ID 重复')
       }
       this.submitting = false
     })

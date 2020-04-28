@@ -25,6 +25,7 @@ import {StatisticFrag} from "./fragments/statistic/statistic.frag";
 import {ClientFormComponent} from "./components/client-form/client-form.component";
 import {UserFormComponent} from "./components/user-form/user-form.component";
 import {NgxEchartsModule} from "ngx-echarts";
+import {httpInterceptorProviders} from "./services/http-interceptor";
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import {NgxEchartsModule} from "ngx-echarts";
     ClientFormComponent,UserFormComponent,
   ],
   providers: [
-    ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService
+    ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

@@ -41,7 +41,7 @@ export class TableHeadConfig {
     </div>
     <tr *ngFor="let row of displayRows" [ngStyle]="{filter:loading?'blur(3px)':''}" >
       <td *ngFor="let col of cols">
-        <ng-container *ngIf="!colTemplates[col.field]">{{row[col.field]}}</ng-container>
+        <ng-container *ngIf="!colTemplates[col.field]"><span style="word-break:break-all;">{{row[col.field]}}</span></ng-container>
         <ng-container *ngIf="colTemplates[col.field]">
           <ng-container  *ngTemplateOutlet="colTemplates[col.field]; context: {$implicit:row}"></ng-container>
         </ng-container>

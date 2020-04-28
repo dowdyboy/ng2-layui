@@ -14,13 +14,13 @@ import {TimeUtil} from "../../utils/time.util";
   styles:[
     `
     .number-panel{
-      background-color: #009688;
+      background-color: #1E9FFF;
       color:white;
       padding: 15px;
       text-indent: 25px;
     }
       .number-panel .title-text{
-        font-size: 24px;
+        font-size: 18px;
       }
       .number-panel .number-text{
         font-size: 32px;
@@ -44,12 +44,14 @@ export class StatisticFrag implements OnInit {
   timelineChartOption:EChartOption = null
   typelineChartOption:EChartOption = null
   cols:TableHeadConfig[] = [
-    {title:'活动ID',field:'agent_id'},
-    {title:'用户ID',field:'uid'},
-    {title:'奖品类型',field:'award_type_text'},
-    {title:'奖品名称',field:'award_name'},
-    {title:'奖品配置',field:'award_config_text'},
-    {title:'中奖时间',field:'time_text'}
+    // {title:'活动ID',field:'agent_id',width:'10%'},
+    // {title:'用户ID',field:'uid',width:'20%'},
+    {title:'奖品类型',field:'award_type_text',width:'10%'},
+    {title:'奖品名称',field:'award_name',width:'10%'},
+    {title:'金额',field:'award_config_money',width:'10%'},
+    {title:'手机号',field:'award_config_tel',width:'10%'},
+    {title:'兑换码',field:'award_config_code',width:'20%'},
+    {title:'中奖时间',field:'time_text',width:'10%'}
   ]
   rows:any[] = []
   loading:boolean = false
@@ -216,14 +218,16 @@ export class StatisticFrag implements OnInit {
           let newX = x as any
           newX.award_name = x.award_config.award_name
           newX.award_type_text = x.award_type=='tel'?'话费':x.award_type=='code'?'两码':x.award_type=='custom'?'自定义':'未知'
+          newX.award_config_money = ''
+          newX.award_config_tel = ''
+          newX.award_config_code = ''
           if(x.award_type=='tel'){
-            newX.award_config_text = `金额:${x.award_config.money},手机号:${x.award_config.tel}`
+            newX.award_config_money = x.award_config.money
+            newX.award_config_tel = x.award_config.tel
           }else if(x.award_type == 'code'){
-            newX.award_config_text = `兑换码:${x.award_config.first_code}`
+            newX.award_config_code = x.award_config.first_code
             if(x.award_config.second_code && x.award_config.second_code.trim()!='')
-              newX.award_config_text += `,${x.award_config.second_code}`
-          }else{
-            newX.award_config_text = ''
+              newX.award_config_code += `,${x.award_config.second_code}`
           }
           newX.time_text = TimeUtil.format('YYYY/MM/DD HH:mm:ss',new Date(x.time))
           return newX
@@ -312,7 +316,7 @@ export class StatisticFrag implements OnInit {
             })
           },3000)
         }else{
-          this.layer.msg('导出请求失败')
+          //this.layer.msg('导出请求失败')
           this.exportState = 'READY'
         }
       })

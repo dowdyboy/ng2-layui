@@ -27,7 +27,7 @@ export class AuthenticationService {
     StorageUtil.setLocalStorage(AuthenticationService.USER_TOKEN_KEY,JSON.stringify(this.token))
   }
 
-  private removeToken(){
+  removeToken(){
     if(!!this.token){
       this.token = null
       StorageUtil.removeLocalStorage(AuthenticationService.USER_TOKEN_KEY)
