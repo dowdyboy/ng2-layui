@@ -11,6 +11,9 @@ import {UserListFrag} from "./fragments/user/user-list.frag";
 import {UserAddFrag} from "./fragments/user/user-add.frag";
 import {UserModifyFrag} from "./fragments/user/user-modify.frag";
 import {StatisticFrag} from "./fragments/statistic/statistic.frag";
+import {AbcEntryListFrag} from "./fragments/route/abc-entry/abc-entry-list.frag";
+import {AbcEntryAddFrag} from "./fragments/route/abc-entry/abc-entry-add.frag";
+import {AbcEntryModifyFrag} from "./fragments/route/abc-entry/abc-entry-modify.frag";
 
 
 const routes: Routes = [
@@ -52,6 +55,21 @@ const routes: Routes = [
       {
         path:'user/modify/:username',
         component:UserModifyFrag,
+        canActivate:[AdminRoleGuard]
+      },
+      {
+        path:'route/abc/list',
+        component:AbcEntryListFrag,
+        canActivate:[AdminRoleGuard]
+      },
+      {
+        path:'route/abc/add',
+        component:AbcEntryAddFrag,
+        canActivate:[AdminRoleGuard]
+      },
+      {
+        path:'route/abc/modify/:estype',
+        component:AbcEntryModifyFrag,
         canActivate:[AdminRoleGuard]
       },
       {

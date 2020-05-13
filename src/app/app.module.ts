@@ -26,6 +26,11 @@ import {ClientFormComponent} from "./components/client-form/client-form.componen
 import {UserFormComponent} from "./components/user-form/user-form.component";
 import {NgxEchartsModule} from "ngx-echarts";
 import {httpInterceptorProviders} from "./services/http-interceptor";
+import {RouteService} from "./services/route.service";
+import {AbcEntryListFrag} from "./fragments/route/abc-entry/abc-entry-list.frag";
+import {AbcEntryAddFrag} from "./fragments/route/abc-entry/abc-entry-add.frag";
+import {AbcEntryModifyFrag} from "./fragments/route/abc-entry/abc-entry-modify.frag";
+import {AbcEntryRouteFormComponent} from "./components/abc-entry-route-form/abc-entry-route-form.component";
 
 @NgModule({
   imports: [
@@ -35,17 +40,23 @@ import {httpInterceptorProviders} from "./services/http-interceptor";
     HttpClientModule,
     AppRoutingModule,
     NgxEchartsModule,
-    Ng2LayuiModule.config({baseDir:'./assets/layui/'})
+    Ng2LayuiModule
   ],
   declarations: [
     AppComponent,LoginPage,MainPage,TestPage,
     ClientListFrag,ClientAddFrag,ClientModifyFrag,UserListFrag,UserAddFrag,UserModifyFrag,StatisticFrag,
-    ClientFormComponent,UserFormComponent,
+    AbcEntryListFrag,AbcEntryAddFrag,AbcEntryModifyFrag,
+    ClientFormComponent,UserFormComponent,AbcEntryRouteFormComponent,
   ],
   providers: [
-    ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService,
+    ConfigurationService,AuthenticationService,ClientService,StatisticService,UserService,RouteService,
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(){
+  }
+
+}

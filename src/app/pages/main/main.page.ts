@@ -52,6 +52,17 @@ export class MainPage implements OnInit{
           text:'用户管理'
         },
         {
+          id:'route',
+          text:'映射管理',
+          unselect:true,
+          children:[
+            {
+              id:'abc-entry-route',
+              text:'农行掌银入口映射'
+            }
+          ]
+        },
+        {
           id:'statistic',
           text:'数据统计'
         }
@@ -77,6 +88,9 @@ export class MainPage implements OnInit{
     }
     if(e.id == 'user'){
       this.router.navigate(['user','list'],{relativeTo:this.route})
+    }
+    if(e.id == 'abc-entry-route'){
+      this.router.navigate(['route','abc','list'],{relativeTo:this.route})
     }
     if(e.id == 'statistic'){
       this.router.navigate(['statistic'],{relativeTo:this.route})

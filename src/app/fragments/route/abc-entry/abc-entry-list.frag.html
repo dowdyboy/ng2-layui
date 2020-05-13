@@ -1,0 +1,17 @@
+
+<h2 layui-color="grey-6">农行掌银入口映射列表</h2>
+
+<div>
+  <div style="text-align: right">
+    <button layui-btn [size]="'sm'" (click)="addButtonClick()" >
+      <layui-icon type="addition"></layui-icon>添加
+    </button>
+  </div>
+  <layui-table [cols]="cols" [rows]="rows" [hasPager]="true" [colTemplates]="{action:action}">
+    <ng-template #action let-row>
+      <layui-icon (click)="modifyButtonClick(row)" type="edit" layui-color="blue" style="font-size: 24px;cursor: pointer;"></layui-icon>
+      &nbsp;
+      <layui-icon (click)="deleteButtonClick(row)" type="delete" layui-color="orange" style="font-size: 24px;cursor: pointer;"></layui-icon>
+    </ng-template>
+  </layui-table>
+</div>

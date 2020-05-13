@@ -24,6 +24,10 @@ body{
 .es-container .layui-nav{
   background-color: white !important;
 }
+.es-container .layui-nav dl dd{
+  background-color: white !important;
+  text-indent: 10px;
+}
 .es-container .layui-nav a{
   color: black !important;
 }

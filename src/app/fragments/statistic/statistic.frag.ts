@@ -49,9 +49,10 @@ export class StatisticFrag implements OnInit {
     {title:'奖品类型',field:'award_type_text',width:'10%'},
     {title:'奖品名称',field:'award_name',width:'10%'},
     {title:'金额',field:'award_config_money',width:'10%'},
-    {title:'手机号',field:'award_config_tel',width:'10%'},
+    {title:'手机号',field:'award_config_tel',width:'15%'},
     {title:'兑换码',field:'award_config_code',width:'20%'},
-    {title:'中奖时间',field:'time_text',width:'10%'}
+    {title:'奖品备注',field:'award_comment',width:'15%'},
+    {title:'中奖时间',field:'time_text',width:'20%'}
   ]
   rows:any[] = []
   loading:boolean = false
@@ -222,7 +223,7 @@ export class StatisticFrag implements OnInit {
           newX.award_config_tel = ''
           newX.award_config_code = ''
           if(x.award_type=='tel'){
-            newX.award_config_money = x.award_config.money
+            newX.award_config_money = (x.award_config.money / 100).toFixed(2)
             newX.award_config_tel = x.award_config.tel
           }else if(x.award_type == 'code'){
             newX.award_config_code = x.award_config.first_code

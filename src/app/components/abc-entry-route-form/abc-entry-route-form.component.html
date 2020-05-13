@@ -1,0 +1,35 @@
+
+<form layui-form *ngIf="model">
+  <layui-form-item *ngIf="!isModify">
+    <layui-form-label>ESTYPE</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="estype" [verify]="'required'" type="text" name="estype" placeholder="请输入入口类型标识" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item *ngIf="isModify">
+    <layui-form-label>ESTYPE</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="estype" type="text" name="estype" placeholder="请输入入口类型标识" disabled >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>映射地址</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="url" [verify]="'required'" type="text" name="url" placeholder="请配置入口映射地址" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>备注</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="comment" type="text" name="comment" placeholder="请输入备注" >
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-input-block>
+      <button layui-btn layui-form-submit type="button" [disabled]="disabled" (submit)="submitButtonHandler()">
+        {{isModify?'修改映射':'添加映射'}}
+      </button>
+      <button layui-btn [theme]="'primary'" (click)="backButtonClick()" type="button">返回</button>
+    </layui-form-input-block>
+  </layui-form-item>
+</form>

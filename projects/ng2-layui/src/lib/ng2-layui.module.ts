@@ -87,17 +87,17 @@ declare var layui;
 })
 export class Ng2LayuiModule {
 
-  static baseDir = './'
+  static baseDir = './assets/layui/'
 
   static config(conf:{baseDir?:string}){
-    Ng2LayuiModule.baseDir = !!conf.baseDir?conf.baseDir:Ng2LayuiModule.baseDir
-    return Ng2LayuiModule
-  }
-
-  constructor(){
+    Ng2LayuiModule.baseDir = conf.baseDir
     layui.config({
       dir:Ng2LayuiModule.baseDir
     })
+  }
+
+  constructor(){
+
   }
 
 }
