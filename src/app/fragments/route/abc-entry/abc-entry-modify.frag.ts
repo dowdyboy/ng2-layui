@@ -28,6 +28,7 @@ export class AbcEntryModifyFrag implements OnInit{
           routeModel.estype = resp.data.estype
           routeModel.url = resp.data.url
           routeModel.comment = resp.data.comment
+          routeModel.has_ext_param = resp.data.has_ext_param
           this.model = routeModel
         }
       })
@@ -36,7 +37,7 @@ export class AbcEntryModifyFrag implements OnInit{
 
   submitHandler(routeModel:AbcEntryRouteModel){
     this.submitting = true
-    this.$route.abcEntryModify(routeModel.estype,routeModel.url,routeModel.comment).subscribe(async resp=>{
+    this.$route.abcEntryModify(routeModel.estype,routeModel.url,routeModel.comment,routeModel.has_ext_param).subscribe(async resp=>{
       if(resp.code == 0){
         await this.layer.alert('修改映射成功',{
           closeBtn:false,

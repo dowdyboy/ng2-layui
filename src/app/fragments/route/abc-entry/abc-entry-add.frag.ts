@@ -20,7 +20,7 @@ export class AbcEntryAddFrag {
 
   submitHandler(routeModel:AbcEntryRouteModel){
     this.submitting = true
-    this.$route.abcEntryAdd(routeModel.estype,routeModel.url,routeModel.comment).subscribe(async resp=>{
+    this.$route.abcEntryAdd(routeModel.estype,routeModel.url,routeModel.comment,routeModel.has_ext_param).subscribe(async resp=>{
       if(resp.code == 0){
         await this.layer.alert('添加映射成功',{
           closeBtn:false,

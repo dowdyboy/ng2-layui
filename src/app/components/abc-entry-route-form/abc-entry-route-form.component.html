@@ -25,6 +25,13 @@
     </layui-form-input-block>
   </layui-form-item>
   <layui-form-item>
+    <layui-form-label>外部参数</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input [(ngModel)]="has_ext_param" type="radio" name="has_ext_param" title="携带" value="1" />
+      <input layui-input [(ngModel)]="has_ext_param" type="radio" name="has_ext_param" title="不携带" value="0" />
+    </layui-form-input-block>
+  </layui-form-item>
+  <layui-form-item>
     <layui-form-input-block>
       <button layui-btn layui-form-submit type="button" [disabled]="disabled" (submit)="submitButtonHandler()">
         {{isModify?'修改映射':'添加映射'}}

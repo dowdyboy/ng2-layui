@@ -1,70 +1,119 @@
 
-<div>
-  <form layui-form>
-    <layui-form-item>
-      <layui-form-label>账号</layui-form-label>
-      <layui-form-input-block>
-        <input layui-input type="text" placeholder="请输入账号" />
-      </layui-form-input-block>
-    </layui-form-item>
-    <layui-form-item>
-      <layui-form-label>密码</layui-form-label>
-      <layui-form-input-inline>
-        <input layui-input type="password" placeholder="请输入密码" />
-      </layui-form-input-inline>
-      <layui-form-text>辅助文字</layui-form-text>
-    </layui-form-item>
-    <layui-form-item>
-      <layui-form-label>选择框</layui-form-label>
-      <layui-form-input-block>
-        <select layui-input >
-          <option value=""></option>
-          <option value="0">北京</option>
-          <option value="1">上海</option>
-          <option value="2">广州</option>
-          <option value="3">深圳</option>
-          <option value="4">杭州</option>
-        </select>
-      </layui-form-input-block>
-    </layui-form-item>
-    <layui-form-item>
-      <layui-form-label>复选框</layui-form-label>
-      <layui-form-input-block>
-        <input layui-input type="checkbox" title="写作">
-        <input layui-input type="checkbox" title="阅读" checked>
-        <input layui-input type="checkbox" title="发呆">
-      </layui-form-input-block>
-    </layui-form-item>
-    <layui-form-item>
-      <layui-form-label>单选框</layui-form-label>
-      <layui-form-input-block>
-        <input layui-input type="radio" name="sex" title="男">
-        <input layui-input type="radio" name="sex" title="女">
-      </layui-form-input-block>
-    </layui-form-item>
-    <layui-form-item>
-      <layui-form-label>描述</layui-form-label>
-      <layui-form-input-block>
-        <textarea layui-input placeholder="请输入描述"></textarea>
-      </layui-form-input-block>
-    </layui-form-item>
-    <layui-form-item>
-      <div layui-inline>
-        <layui-form-label>范围</layui-form-label>
-        <layui-form-input-inline style="width:50px">
-          <input layui-input >
-        </layui-form-input-inline>
-        <layui-form-text>-</layui-form-text>
-        <layui-form-input-inline style="width:50px">
-          <input layui-input >
-        </layui-form-input-inline>
+<div layui-fluid>
+<!--  <div layui-row>-->
+<!--    <div layui-col-sm="4">&nbsp;</div>-->
+<!--    <div layui-col-sm="4">-->
+<!--      <div>-->
+<!--        <form layui-form>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>账号</layui-form-label>-->
+<!--            <layui-form-input-block>-->
+<!--              <input layui-input type="text" placeholder="请输入账号" />-->
+<!--            </layui-form-input-block>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>密码</layui-form-label>-->
+<!--            <layui-form-input-inline>-->
+<!--              <input layui-input type="password" placeholder="请输入密码" />-->
+<!--            </layui-form-input-inline>-->
+<!--            <layui-form-text>辅助文字</layui-form-text>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>选择框</layui-form-label>-->
+<!--            <layui-form-input-block>-->
+<!--              <select layui-input >-->
+<!--                <option value=""></option>-->
+<!--                <option value="0">北京</option>-->
+<!--                <option value="1">上海</option>-->
+<!--                <option value="2">广州</option>-->
+<!--                <option value="3">深圳</option>-->
+<!--                <option value="4">杭州</option>-->
+<!--              </select>-->
+<!--            </layui-form-input-block>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>复选框</layui-form-label>-->
+<!--            <layui-form-input-block>-->
+<!--              <input layui-input type="checkbox" title="写作">-->
+<!--              <input layui-input type="checkbox" title="阅读" checked>-->
+<!--              <input layui-input type="checkbox" title="发呆">-->
+<!--            </layui-form-input-block>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>单选框</layui-form-label>-->
+<!--            <layui-form-input-block>-->
+<!--              <input layui-input type="radio" name="sex" title="男">-->
+<!--              <input layui-input type="radio" name="sex" title="女">-->
+<!--            </layui-form-input-block>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <layui-form-label>描述</layui-form-label>-->
+<!--            <layui-form-input-block>-->
+<!--              <textarea layui-input placeholder="请输入描述"></textarea>-->
+<!--            </layui-form-input-block>-->
+<!--          </layui-form-item>-->
+<!--          <layui-form-item>-->
+<!--            <div layui-inline>-->
+<!--              <layui-form-label>范围</layui-form-label>-->
+<!--              <layui-form-input-inline style="width:50px">-->
+<!--                <input layui-input >-->
+<!--              </layui-form-input-inline>-->
+<!--              <layui-form-text>-</layui-form-text>-->
+<!--              <layui-form-input-inline style="width:50px">-->
+<!--                <input layui-input >-->
+<!--              </layui-form-input-inline>-->
+<!--            </div>-->
+<!--            <div layui-inline>-->
+<!--              <layui-form-label>范围</layui-form-label>-->
+<!--              <layui-form-input-inline style="width:50px">-->
+<!--                <input layui-input >-->
+<!--              </layui-form-input-inline>-->
+<!--            </div>-->
+<!--          </layui-form-item>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div layui-col-sm="4">&nbsp;</div>-->
+<!--  </div>-->
+<!--  <div layui-row>-->
+<!--    <div layui-col-sm="12">-->
+<!--      <div layui-anim="up" [loop]="false" style="width:100px;height: 100px;background-color: red;">i am rectangle</div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br/>-->
+<!--  <div layui-row>-->
+<!--    <div layui-col-sm="12">-->
+<!--      <layui-progress [progress]="progress" [color]="'black'" [showPercent]="true" [isBig]="progressShowPercent" ></layui-progress>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br/>-->
+  <div layui-row layui-col-space="15">
+    <div layui-col-xs="4">
+      <layui-card>
+        <layui-card-header>卡片面板</layui-card-header>
+        <layui-card-body>
+          卡片式面板面板通常用于非白色背景色的主体内 <br/>
+          从而映衬出边框投影
+        </layui-card-body>
+      </layui-card>
+    </div>
+    <div layui-col-xs="4">
+      <div layui-collapse [accordion]="collapseAccordion">
+        <div layui-collapse-item>
+          <h2 layui-collapse-title>杜甫</h2>
+          <div layui-collapse-content [show]="true">内容区域</div>
+        </div>
+        <div layui-collapse-item>
+          <h2 layui-collapse-title>李白</h2>
+          <div layui-collapse-content>内容区域2</div>
+        </div>
+        <div layui-collapse-item>
+          <h2 layui-collapse-title>白居易</h2>
+          <div layui-collapse-content>内容区域3</div>
+        </div>
       </div>
-      <div layui-inline>
-        <layui-form-label>范围</layui-form-label>
-        <layui-form-input-inline style="width:50px">
-          <input layui-input >
-        </layui-form-input-inline>
-      </div>
-    </layui-form-item>
-  </form>
+    </div>
+  </div>
 </div>
+
+<br/><br/>

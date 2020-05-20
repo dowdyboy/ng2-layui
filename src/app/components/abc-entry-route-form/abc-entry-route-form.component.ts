@@ -18,6 +18,9 @@ export class AbcEntryRouteFormComponent implements OnChanges {
   estype:string = ''
   url:string = ''
   comment:string = ''
+  has_ext_param:string = ''
+
+
 
   constructor(
   ){}
@@ -29,6 +32,7 @@ export class AbcEntryRouteFormComponent implements OnChanges {
       this.estype = this.model.estype
       this.url = this.model.url
       this.comment = this.model.comment
+      this.has_ext_param = `${this.model.has_ext_param}`
     }
   }
 
@@ -37,6 +41,7 @@ export class AbcEntryRouteFormComponent implements OnChanges {
     routeModel.estype = this.estype
     routeModel.url = this.url
     routeModel.comment = this.comment
+    routeModel.has_ext_param = +this.has_ext_param
     this.submit.emit(routeModel)
   }
 

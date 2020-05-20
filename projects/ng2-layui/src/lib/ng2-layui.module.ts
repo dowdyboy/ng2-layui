@@ -53,6 +53,12 @@ import {TableComponent} from "./table/table.component";
 import {PagerComponent} from "./pager/pager.component";
 import {DateTimePickerDirective} from "./datetime/date-time-picker.directive";
 import {TableDirective} from "./table/table.directive";
+import {AnimDirective} from "./animation/anim.directive";
+import {ProgressComponent} from "./progress/progress.component";
+import {CollapseDirective} from "./collapse/collapse.directive";
+import {CollapseItemDirective} from "./collapse/collapse-item.directive";
+import {CollapseTitleDirective} from "./collapse/collapse-title.directive";
+import {CollapseContentDirective} from "./collapse/collapse-content.directive";
 
 declare var layui;
 
@@ -66,11 +72,14 @@ declare var layui;
     LayoutComponent,HeaderComponent,SideComponent,BodyComponent,FooterComponent,LogoComponent,LayoutLeftDirective,LayoutRightDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
+    CollapseDirective,CollapseItemDirective,CollapseTitleDirective,CollapseContentDirective,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
     NavComponent,BreadcrumbComponent,
     TableComponent,TableDirective,PagerComponent,
+    AnimDirective,
+    ProgressComponent,
   ],
   exports: [
     ContainerDirective,RowDirective,ColXsDirective,ColSmDirective,ColMdDirective,ColLgDirective,FluidDirective,ColSpaceDirective,
@@ -78,11 +87,14 @@ declare var layui;
     LayoutComponent,HeaderComponent,SideComponent,BodyComponent,FooterComponent,LogoComponent,LayoutLeftDirective,LayoutRightDirective,
     ShowBlockDirective,ShowInlineDirective,ShowInlineBlockDirective,HideDirective,
     IconComponent,TabComponent,TabItemComponent,ColorDirective,ColorBgDirective,CardComponent,CardHeaderComponent,CardBodyComponent,
+    CollapseDirective,CollapseItemDirective,CollapseTitleDirective,CollapseContentDirective,
     ButtonDirective,ButtonFluidDirective,ButtonRadiusDirective,ButtonGroupDirective,ButtonContainerDirective,
     FormComponent,FormItemComponent,FormLabelComponent,FormInputBlockComponent,InputComponent,FormInputInlineComponent,
     FormTextComponent,InputIgnoreDirective,FormSubmitDirective,DateTimePickerDirective,
     NavComponent,BreadcrumbComponent,
     TableComponent,TableDirective,PagerComponent,
+    AnimDirective,
+    ProgressComponent,
   ]
 })
 export class Ng2LayuiModule {

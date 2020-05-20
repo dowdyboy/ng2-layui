@@ -223,7 +223,7 @@ export class StatisticFrag implements OnInit {
           newX.award_config_tel = ''
           newX.award_config_code = ''
           if(x.award_type=='tel'){
-            newX.award_config_money = (x.award_config.money / 100).toFixed(2)
+            newX.award_config_money = (+x.award_config.money).toFixed(2)
             newX.award_config_tel = x.award_config.tel
           }else if(x.award_type == 'code'){
             newX.award_config_code = x.award_config.first_code

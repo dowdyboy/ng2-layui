@@ -15,21 +15,23 @@ export class RouteService {
     private http:HttpClient
   ){}
 
-  abcEntryAdd(estype:string,url:string,comment:string){
+  abcEntryAdd(estype:string,url:string,comment:string,has_ext_param:number){
     return this.http.post<HttpResponseData<{}>>(this.$conf.ROUTE_URLS.ABC_ENTRY_ADD.get(),JSON.stringify({
       token:this.$auth.getToken(),
       estype:estype,
       url:url,
-      comment:comment
+      comment:comment,
+      has_ext_param:has_ext_param
     }))
   }
 
-  abcEntryModify(estype:string,url:string,comment:string){
+  abcEntryModify(estype:string,url:string,comment:string,has_ext_param:number){
     return this.http.post<HttpResponseData<{}>>(this.$conf.ROUTE_URLS.ABC_ENTRY_MODIFY.get(),JSON.stringify({
       token:this.$auth.getToken(),
       estype:estype,
       url:url,
-      comment:comment
+      comment:comment,
+      has_ext_param:has_ext_param
     }))
   }
 
@@ -41,7 +43,7 @@ export class RouteService {
   }
 
   abcEntryList(){
-    return this.http.get<HttpResponseData<{estype:string,url:string,comment:string}[]>>(this.$conf.ROUTE_URLS.ABC_ENTRY_LIST.get(this.$auth.getToken()))
+    return this.http.get<HttpResponseData<{estype:string,url:string,comment:string,has_ext_param:number}[]>>(this.$conf.ROUTE_URLS.ABC_ENTRY_LIST.get(this.$auth.getToken()))
       .pipe(
         map(resp=>{
           if(resp.code == 0){
@@ -55,7 +57,7 @@ export class RouteService {
   }
 
   abcEntryGet(estype:string){
-    return this.http.get<HttpResponseData<{estype:string,url:string,comment:string}>>(this.$conf.ROUTE_URLS.ABC_ENTRY_GET.get(this.$auth.getToken(),estype))
+    return this.http.get<HttpResponseData<{estype:string,url:string,comment:string,has_ext_param:number}>>(this.$conf.ROUTE_URLS.ABC_ENTRY_GET.get(this.$auth.getToken(),estype))
   }
 
 }

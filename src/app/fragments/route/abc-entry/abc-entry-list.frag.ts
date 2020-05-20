@@ -13,8 +13,9 @@ export class AbcEntryListFrag implements OnInit {
   cols:TableHeadConfig[] = [
     {title:'ESTYPE',field:'estype',width:'15%'},
     {title:'映射地址',field:'url',width:'45%'},
-    {title:'备注',field:'comment',width:'25%'},
-    {title:'操作',field:'action',width:'15%'}
+    {title:'备注',field:'comment',width:'20%'},
+    {title:'外部参数',field:'has_ext_param',width:'10%'},
+    {title:'操作',field:'action',width:'10%'}
   ]
   rows:any[] = []
 
@@ -28,7 +29,10 @@ export class AbcEntryListFrag implements OnInit {
   private initialList(){
     this.$route.abcEntryList().subscribe(resp=>{
       if(resp.code == 0){
-        this.rows = resp.data
+        this.rows = resp.data.map(x=>{
+          x.has_ext_param = (x.has_ext_param==0?'不携带':'携带') as any
+          return x
+        })
       }
     })
   }

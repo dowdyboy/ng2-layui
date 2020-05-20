@@ -6,7 +6,7 @@ import {Url} from "../models/url.model";
 export class ConfigurationService {
 
   NAME:string = '营销活动管理系统'
-  VERSION:string = '1.0.0'
+  VERSION:string = '1.0.2'
   DEBUG:boolean = false
 
   API_BASE_URL = 'https://api.case.excelsecu.com.cn'
