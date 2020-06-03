@@ -121,4 +121,16 @@ export class StatisticService {
       }))
   }
 
+  getAccessLocationCount(client_id:string,start_time:number,end_time:number){
+    return this.http.get<HttpResponseData<{name:string,longitude:number,latitude:number,count:number}[]>>(this.$conf.STATISTIC_URLS.GET_ACCESS_LOCATION_COUNT.get(this.$auth.getToken(),client_id,start_time,end_time))
+      .pipe(map(resp=>{
+        if(resp.code == 0){
+          resp.data = (resp.data as any).locations
+        }else{
+          resp.data = []
+        }
+        return resp
+      }))
+  }
+
 }

@@ -43,6 +43,7 @@ export class StatisticFrag implements OnInit {
   activeTotalCount:number = 0
   timelineChartOption:EChartOption = null
   typelineChartOption:EChartOption = null
+  accessLocationChartOption:any = null
   cols:TableHeadConfig[] = [
     // {title:'活动ID',field:'agent_id',width:'10%'},
     // {title:'用户ID',field:'uid',width:'20%'},
@@ -208,6 +209,211 @@ export class StatisticFrag implements OnInit {
     this.freshAwardDetailTableData()
   }
 
+  private freshAccessLocation(){
+    this.$statistic.getAccessLocationCount(this.selectClientId,this.start_time.getTime(),this.end_time.getTime()).subscribe(resp=>{
+      if(resp.code == 0){
+        let minCount = (()=>{
+          let sortedData = resp.data.sort((a,b)=>{
+            return a.count > b.count?1:a.count < b.count?-1:0
+          })
+          return sortedData.length>0?sortedData[0].count:0
+        })()
+        let maxCount = (()=>{
+          let sortedData = resp.data.sort((a,b)=>{
+            return a.count < b.count?1:a.count > b.count?-1:0
+          })
+          return sortedData.length>0?sortedData[0].count:1
+        })()
+        if(minCount == maxCount) minCount = 0
+        this.accessLocationChartOption = {
+          title:{
+            text:'访问用户 地理分布'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: p=>{
+              return `${p.name}：${p.data.value[2]}`
+            }
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
+          },
+          visualMap: {
+            min: minCount,
+            max: maxCount,
+            text: ['访问数', ''],
+            realtime: false,
+            calculable: false,
+            inRange: {
+              color: ['#91bfff', '#1E9FFF']
+            }
+          },
+          geo: {
+            map: 'china', // 地图类型
+            show: true, // 是否显示地理坐标系组件
+            // 是否开启鼠标缩放和平移漫游 默认不开启 如果只想要开启缩放或者平移，
+            // 可以设置成 'scale' 或者 'move' 设置成 true 为都开启
+            roam: true,
+            zoom:1,
+            scaleLimit:{min:1,max:5},
+            // 图形上的文本标签
+            label: {
+              show: false // 是否显示对应地名
+            },
+            // 地图区域的多边形 图形样式
+            itemStyle: {
+              areaColor: '#eee', // 地图区域的颜色
+              borderWidth: 0.5, // 描边线宽 为 0 时无描边
+              borderColor: 'gray', // 图形的描边颜色 支持的颜色格式同 color，不支持回调函数
+              borderType: 'solid' // 描边类型，默认为实线，支持 'solid', 'dashed', 'dotted'
+            },
+            // 高亮状态下的多边形和标签样式
+            emphasis: {
+              label: {
+                show: true, // 是否显示标签
+                color: '#fff' // 文字的颜色 如果设置为 'auto'，则为视觉映射得到的颜色，如系列色
+              },
+              itemStyle: {
+                areaColor: '#dedede' // 地图区域的颜色
+              }
+            }
+          },
+          series: [
+            {
+              type: 'scatter', // 类型
+              coordinateSystem: 'geo', // 该系列使用的坐标系 可选: 'cartesian2d','polar','geo'
+              // 标记的图形, 标记类型包括 'circle', 'rect', 'roundRect', 'triangle', 'diamond',
+              // 'pin', 'arrow', 'none'
+              symbol: 'circle',
+              symbolSize: d=>{
+                let min = 8,
+                  max = 18
+                let overSize = d[2]/minCount*min > max ? max : d[2]/minCount*min
+                return overSize
+              }, // 标记的大小
+              // 图形的样式
+              itemStyle: {
+                color: '#1E9FFF'
+              },
+              // 系列中的数据内容数组, 数组项通常为具体的数据项
+              data: resp.data.map(x=>{
+                return { name: x.name, value: [x.longitude, x.latitude, x.count] }
+              })
+            },
+            // {
+            //   type: 'effectScatter', // 类型
+            //   coordinateSystem: 'geo', // 该系列使用的坐标系 可选: 'cartesian2d','polar','geo'
+            //   // 标记的图形, 标记类型包括 'circle', 'rect', 'roundRect', 'triangle', 'diamond',
+            //   // 'pin', 'arrow', 'none'
+            //   symbol: 'circle',
+            //   // 标记的大小, 如果需要每个数据的图形大小不一样，可以设置为如下格式的回调函数
+            //   // (value: Array|number, params: Object) => number|Array
+            //   // 其中第一个参数 value 为 data 中的数据值。第二个参数params 是其它的数据项参数
+            //   symbolSize: function (val) {
+            //     return val[2] / 600
+            //   },
+            //   // 图形的样式
+            //   itemStyle: {
+            //     color: '#1E9FFF'
+            //   },
+            //   label:{show:true,formatter:'{b}'},
+            //   // 系列中的数据内容数组。数组项通常为具体的数据项
+            //   data: [
+            //     //{ name: '广州', value: [113.280637, 23.125178, 25] }
+            //   ]
+            // }
+          ]
+        }
+      }
+    })
+    // this.accessLocationChartOption = {
+    //   title:{
+    //     text:'访问用户 地理分布'
+    //   },
+    //   tooltip: {
+    //     trigger: 'item',
+    //     formatter: '{b}：{c}'
+    //   },
+    //   toolbox: {
+    //     feature: {
+    //       saveAsImage: {},
+    //       dataView:{readOnly:true}
+    //     }
+    //   },
+    //   visualMap: {
+    //     min: 0,
+    //     max: 50,
+    //     text: ['访问数', ''],
+    //     realtime: false,
+    //     calculable: false,
+    //     inRange: {
+    //       color: ['#fff', '#2171C1']
+    //     }
+    //   },
+    //   series: [
+    //     {
+    //       type: 'map',
+    //       mapType: 'china',  //  与注册时的名字保持统一   echarts.registerMap('China', geoJson);
+    //       itemStyle: {
+    //         normal: {
+    //           areaColor: '#ddd',
+    //           borderColor: 'black',
+    //           label: { show: true, color: 'black' }
+    //         },
+    //         emphasis: {
+    //           areaColor: '#ffa60c'
+    //         }
+    //       },
+    //       zoom: 1.0,
+    //       roam: true, //是否开启平游或缩放
+    //       scaleLimit: { //滚轮缩放的极限控制
+    //         min: 1,
+    //         max: 2.5
+    //       },
+    //       data: [
+    //         { name: '北京', value: 0 },
+    //         { name: '天津', value: 0 },
+    //         { name: '重庆', value: 0 },
+    //         { name: '上海', value: 0 },
+    //         { name: '湖南', value: 0 },
+    //         { name: '广东', value: 20 },
+    //         { name: '福建', value: 0 },
+    //         { name: '江西', value: 0 },
+    //         { name: '四川', value: 0 },
+    //         { name: '广西', value: 0 },
+    //         { name: '新疆', value: 0 },
+    //         { name: '西藏', value: 0 },
+    //         { name: '青海', value: 0 },
+    //         { name: '甘肃', value: 0 },
+    //         { name: '宁夏', value: 0 },
+    //         { name: '内蒙古', value: 0 },
+    //         { name: '海南', value: 0 },
+    //         { name: '山西', value: 0 },
+    //         { name: '陕西', value: 0 },
+    //         { name: '云南', value: 0 },
+    //         { name: '贵州', value: 0 },
+    //         { name: '湖北', value: 0 },
+    //         { name: '浙江', value: 0 },
+    //         { name: '安徽', value: 0 },
+    //         { name: '河南', value: 0 },
+    //         { name: '山东', value: 0 },
+    //         { name: '江苏', value: 0 },
+    //         { name: '河北', value: 0 },
+    //         { name: '辽宁', value: 0 },
+    //         { name: '吉林', value: 0 },
+    //         { name: '黑龙江', value: 0 },
+    //         { name: '台湾', value: 0 },
+    //         { name:'香港', value:0},
+    //         { name:'澳门', value:0},
+    //         { name:'南海诸岛', value:0}
+    //         ]
+    //     }
+    //   ]
+    // }
+  }
+
   private freshAwardDetailTableData(){
     this.loading = true
     this.$statistic.getAwardDetail(this.selectClientId,this.start_time.getTime(),this.end_time.getTime(),this.page,this.pageSize,this.timeOrder).subscribe(resp=>{
@@ -243,6 +449,7 @@ export class StatisticFrag implements OnInit {
     this.freshTimeline()
     this.freshTypeline()
     this.freshAwardDetailTable()
+    this.freshAccessLocation()
   }
 
   ngOnInit(): void {
@@ -326,6 +533,10 @@ export class StatisticFrag implements OnInit {
       window.open(this.exportFileUrl)
       this.exportState = 'READY'
     }
+  }
+
+  chinaMapItemClick(e:any){
+    console.log(e.data.name)
   }
 
 }

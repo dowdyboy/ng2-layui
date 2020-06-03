@@ -91,6 +91,8 @@
           <td>{{item.value}}</td>
           <td>{{item.comment}}</td>
           <td>
+            <layui-icon (click)="customConfigEditButtonClick(item)" type="edit" layui-color="blue" style="cursor: pointer;"></layui-icon>
+            &nbsp;
             <layui-icon (click)="customConfigDeleteButtonClick(item)" type="delete" layui-color="orange" style="cursor: pointer;"></layui-icon>
           </td>
         </tr>
@@ -123,6 +125,13 @@
     <layui-form-input-inline>
       <input layui-input layui-datetime-picker [pickType]="'datetime'" [(value)]="end_time" type="text" placeholder="活动结束时间" >
     </layui-form-input-inline>
+  </layui-form-item>
+  <layui-form-item>
+    <layui-form-label>定位统计</layui-form-label>
+    <layui-form-input-block>
+      <input layui-input type="radio" title="开启" name="is_statistic_ip_location" [(ngModel)]="is_statistic_ip_location" value="1" >
+      <input layui-input type="radio" title="关闭" name="is_statistic_ip_location" [(ngModel)]="is_statistic_ip_location" value="0" >
+    </layui-form-input-block>
   </layui-form-item>
   <layui-form-item>
     <layui-form-label>状态</layui-form-label>

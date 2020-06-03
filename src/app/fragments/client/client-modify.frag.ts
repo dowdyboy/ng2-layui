@@ -42,6 +42,7 @@ export class ClientModifyFrag implements OnInit {
           model.custom_config = JSON.stringify(resp.data.custom_config)
           model.start_time = resp.data.start_time
           model.end_time = resp.data.end_time
+          model.is_statistic_ip_location = resp.data.is_statistic_ip_location
           model.state = resp.data.state
           this.model = model
         }
@@ -66,6 +67,7 @@ export class ClientModifyFrag implements OnInit {
       model.custom_config,
       model.start_time,
       model.end_time,
+      model.is_statistic_ip_location,
       model.state
     ).subscribe(async resp=>{
       if(resp.code == 0){

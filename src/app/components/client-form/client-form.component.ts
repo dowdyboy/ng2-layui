@@ -24,6 +24,7 @@ export class ClientFormComponent implements OnChanges {
   custom_config:{key:string,value:string,comment:string}[] = []
   start_time:Date = new Date()
   end_time:Date = new Date()
+  is_statistic_ip_location:string = ''
   state:string = ''
 
   strategy_start_time:Date = new Date()
@@ -55,6 +56,7 @@ export class ClientFormComponent implements OnChanges {
       }
       this.start_time = new Date(this.model.start_time)
       this.end_time = new Date(this.model.end_time)
+      this.is_statistic_ip_location = this.model.is_statistic_ip_location+''
       this.state = this.model.state+''
     }
   }
@@ -93,20 +95,25 @@ export class ClientFormComponent implements OnChanges {
       this.layer.msg('请填写自定义配置的值')
       return
     }
-    if(this.custom_config.filter(x=>{return x.key==this.custom_config_key}).length == 0){
-      this.custom_config.push({
-        key:this.custom_config_key,
-        value:this.custom_config_value,
-        comment:this.custom_config_comment
-      })
-      this.custom_config_key = ''
-      this.custom_config_value = ''
-      this.custom_config_comment = ''
-    }
+    this.custom_config = this.custom_config.filter(x=>{return x.key!=this.custom_config_key})
+    this.custom_config.push({
+      key:this.custom_config_key,
+      value:this.custom_config_value,
+      comment:this.custom_config_comment
+    })
+    this.custom_config_key = ''
+    this.custom_config_value = ''
+    this.custom_config_comment = ''
   }
 
   customConfigDeleteButtonClick(item:{key:string,value:string,comment:string}){
     this.custom_config = this.custom_config.filter(x=>{return x.key!=item.key})
+  }
+
+  customConfigEditButtonClick(item:{key:string,value:string,comment:string}){
+    this.custom_config_key = item.key
+    this.custom_config_value = item.value
+    this.custom_config_comment = item.comment
   }
 
   submitHandler(){
@@ -128,6 +135,7 @@ export class ClientFormComponent implements OnChanges {
     model.custom_config = JSON.stringify(customConfig)
     model.start_time = this.start_time.getTime()
     model.end_time = this.end_time.getTime()
+    model.is_statistic_ip_location = +this.is_statistic_ip_location
     model.state = +this.state
     this.submit.emit(model)
   }

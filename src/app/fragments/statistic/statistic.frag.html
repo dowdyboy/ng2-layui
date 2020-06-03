@@ -74,6 +74,14 @@
   </div>
 </div>
 
+<br/>
+<div *ngIf="accessLocationChartOption" layui-row>
+  <div layui-col-sm="12">
+    <div echarts [options]="accessLocationChartOption" (chartClick)="chinaMapItemClick($event)"></div>
+  </div>
+</div>
+<br/><br/>
+
 <h3 style="font-weight: bolder;text-indent: 10px;">奖品派发详情</h3>
 <div style="text-align: right;">
   <form layui-form>

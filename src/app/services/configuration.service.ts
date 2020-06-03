@@ -6,7 +6,7 @@ import {Url} from "../models/url.model";
 export class ConfigurationService {
 
   NAME:string = '营销活动管理系统'
-  VERSION:string = '1.0.2'
+  VERSION:string = '1.0.4'
   DEBUG:boolean = false
 
   API_BASE_URL = 'https://api.case.excelsecu.com.cn'
@@ -47,7 +47,8 @@ export class ConfigurationService {
     GET_AWARD_DETAIL:new Url(`${this.API_BASE_URL}/api/statistic/award/detail/get?token=$0&client_id=$1&start_time=$2&end_time=$3&page=$4&page_size=$5&time_order=$6`),
     EXPORT_AWARD_DETAIL:new Url(`${this.API_BASE_URL}/api/statistic/award/detail/export`),
     GET_EXPORT_FILE:new Url(`${this.API_BASE_URL}/api/statistic/export/file/get?token=$0&ticket=$1`),
-    GET_ACTIVE_TOTAL:new Url(`${this.API_BASE_URL}/api/statistic/active/total/get?token=$0&client_id=$1&start_time=$2&end_time=$3`)
+    GET_ACTIVE_TOTAL:new Url(`${this.API_BASE_URL}/api/statistic/active/total/get?token=$0&client_id=$1&start_time=$2&end_time=$3`),
+    GET_ACCESS_LOCATION_COUNT:new Url(`${this.API_BASE_URL}/api/statistic/access/location/get?token=$0&client_id=$1&start_time=$2&end_time=$3`)
   }
 
   ROUTE_URLS = {

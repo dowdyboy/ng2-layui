@@ -32,6 +32,14 @@ import {AbcEntryAddFrag} from "./fragments/route/abc-entry/abc-entry-add.frag";
 import {AbcEntryModifyFrag} from "./fragments/route/abc-entry/abc-entry-modify.frag";
 import {AbcEntryRouteFormComponent} from "./components/abc-entry-route-form/abc-entry-route-form.component";
 
+//"node_modules/echarts/map/china.js"
+import 'echarts/map/js/china'
+// import 'echarts/map/js/province/xizang'
+// import 'echarts/extension/bmap/bmap'
+// import 'echarts/extension/bmap/BMapCoordSys'
+// import 'echarts/extension/bmap/BMapView'
+// import 'echarts/extension/bmap/BMapModel'
+
 @NgModule({
   imports: [
     BrowserModule,

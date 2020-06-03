@@ -36,6 +36,7 @@ export class ClientAddFrag {
       model.custom_config,
       model.start_time,
       model.end_time,
+      model.is_statistic_ip_location,
       model.state
     ).subscribe(async resp=>{
       if(resp.code == 0){

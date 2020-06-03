@@ -31,7 +31,7 @@ export class ClientService {
   }
 
   get(client_id:string){
-    type respT = {client_id:string,client_prefix:string,client_forward_url:string,client_name:string,lottery_strategy_config:{start_time:number,end_time:number,limit:number}[],custom_config:any,start_time:number,end_time:number,state:number}
+    type respT = {client_id:string,client_prefix:string,client_forward_url:string,client_name:string,lottery_strategy_config:{start_time:number,end_time:number,limit:number}[],custom_config:any,start_time:number,end_time:number,is_statistic_ip_location:number,state:number}
     return this.http.get<HttpResponseData<respT>>(this.$conf.CLIENT_URLS.GET.get(this.$auth.getToken(),client_id)).pipe(
       map(resp=>{
         if(resp.code == 0){
@@ -55,7 +55,8 @@ export class ClientService {
     client_id:string,client_prefix:string,client_forward_url:string,client_name:string,
     lottery_strategy_config:{start_time:number,end_time:number,limit:number}[],
     custom_config:any,
-    start_time:number,end_time:number,state:number
+    start_time:number,end_time:number,
+    is_statistic_ip_location:number,state:number
   ){
     return this.http.post<HttpResponseData<{}>>(this.$conf.CLIENT_URLS.MODIFY.get(),JSON.stringify({
       token:this.$auth.getToken(),
@@ -67,7 +68,8 @@ export class ClientService {
             limit:x.limit
           }
         })}),
-      custom_config:custom_config,start_time:start_time,end_time:end_time,state:state
+      custom_config:custom_config,start_time:start_time,end_time:end_time,
+      is_statistic_ip_location:is_statistic_ip_location,state:state
     }))
   }
 
@@ -75,7 +77,8 @@ export class ClientService {
     client_id:string,client_prefix:string,client_forward_url:string,client_name:string,
     lottery_strategy_config:{start_time:number,end_time:number,limit:number}[],
     custom_config:any,
-    start_time:number,end_time:number,state:number
+    start_time:number,end_time:number,
+    is_statistic_ip_location:number,state:number
   ){
     return this.http.post<HttpResponseData<{}>>(this.$conf.CLIENT_URLS.PUT.get(),JSON.stringify({
       token:this.$auth.getToken(),
@@ -87,7 +90,8 @@ export class ClientService {
             limit:x.limit
           }
         })}),
-      custom_config:custom_config,start_time:start_time,end_time:end_time,state:state
+      custom_config:custom_config,start_time:start_time,end_time:end_time,
+      is_statistic_ip_location:is_statistic_ip_location,state:state
     }))
   }
 
